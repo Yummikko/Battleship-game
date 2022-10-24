@@ -1,4 +1,4 @@
-package ship;
+package model;
 
 public enum ShipType {
     CARRIER(5),
