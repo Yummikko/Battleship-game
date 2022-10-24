@@ -1,4 +1,4 @@
-package square;
+package board;
 
 public class SquareStatus {
 }
