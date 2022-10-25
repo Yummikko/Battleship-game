@@ -1,6 +1,13 @@
 package view;
 
+import util.Input;
+
 public class Display {
+    Input input;
+
+    public Display(Input input) {
+        this.input = input;
+    }
 
     public void showLogo(){
 
@@ -47,6 +54,10 @@ public class Display {
                 "\t 0 - Play game! \n" +
                 "\t 1 - Print game rules \n" +
                 "\t 2 - Exit game\n");
+    }
+
+    public void validateMenuOptions() {
+
     }
 
     public void gameRules() {

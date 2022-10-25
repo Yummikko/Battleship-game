@@ -19,5 +19,7 @@ public class Battleship {
         display.gameRules();
         display.clickToContinue();
         input.clickToContinue();
+        input.playersName();
+
     }
 }

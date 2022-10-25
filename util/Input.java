@@ -5,15 +5,17 @@ public class Input {
 
     Scanner userInput = new Scanner(System.in);
 
-    public String firstPlayerName() {
+    public void playersName() {
+
+        System.out.println("Player 1, please enter Your nickname: ");
         String firstPlayerName = userInput.nextLine();
-        return firstPlayerName;
+        System.out.println("Player 2, please enter Your nickname: ");
+        String secondPlayerName = userInput.nextLine();
+
+        System.out.println("\nHello " + firstPlayerName + " & " + secondPlayerName + ", welcome to the Battleship Game!\n");
+
     }
 
-    public String secondPlayerName() {
-        String secondPlayerName = userInput.nextLine();
-        return secondPlayerName;
-    }
 
     public void clickToContinue() {
         String clickToContinue = userInput.nextLine();
