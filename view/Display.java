@@ -56,10 +56,6 @@ public class Display {
                 "\t 2 - Exit game\n");
     }
 
-    public void validateMenuOptions() {
-
-    }
-
     public void gameRules() {
         System.out.println(Colors.CYAN_BOLD+ "Here are some rules of the game: ");
         System.out.println(Colors.ANSI_BLACK+"1. Each ship must be placed horizontally orvertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
@@ -71,6 +67,10 @@ public class Display {
 
     public void printMessages(String message) {
         System.out.println(message);
+    }
+
+    public void wrongInput(){
+        System.out.println(Colors.ANSI_RED + "Invalid input, please try again!");
     }
 
     public void printExitMessage() {
