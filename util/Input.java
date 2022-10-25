@@ -1,10 +1,13 @@
 package util;
-import view.Display;
 
+import view.Display;
 import java.util.Scanner;
+import static java.lang.System.in;
 
 public class Input {
-    Scanner userInput = new Scanner(System.in);
+
+    public static final String ANSI_BLACK = "\033[1;30m";
+    Scanner userInput = new Scanner(in);
 
     public void playersName() {
 
@@ -41,4 +44,22 @@ public class Input {
         }
     }
 
+    public int getOceanSize() {
+        while(true) {
+            System.out.println("Please provide ocean size: ");
+            Scanner oceanSize = new Scanner(in);
+            String userInput = oceanSize.nextLine();
+            if (checkInput(userInput)) {
+                return Integer.parseInt(userInput);
+            }
+            System.out.println("You need to provide a number between 10 and 20!");
+        }
+    }
+
+    private Boolean checkInput(String userInput) {
+        if (checkIfInteger(userInput)) {
+            return (Integer.parseInt(userInput) >= 10) && (Integer.parseInt(userInput) <= 20);
+        }
+        return false;
+    }
 }
