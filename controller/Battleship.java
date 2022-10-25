@@ -15,7 +15,7 @@ public class Battleship {
     public Battleship(Display display, Input input) {
         this.display = display;
         this.input = input;
-        game = new Game();
+        game = new Game(display, input);
         run = true;
 
     }
