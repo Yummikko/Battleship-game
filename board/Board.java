@@ -1,7 +1,14 @@
 package board;
 
+import util.Input;
+
 public class Board {
     private Square[][] ocean;
+    public Integer sideLength;
+
+    public Board(Integer sideLength) {
+        this.sideLength = sideLength;
+    }
 
     public Square[][] getOcean() {
         return ocean;
@@ -11,17 +18,18 @@ public class Board {
         this.ocean = ocean;
     }
 
-    public Board(int boardSize){
-        ocean = new Square[boardSize][boardSize];
-
-        for(int i = 0; i < boardSize; i++){
-            for (int j = 0; j < boardSize; j++){
-                ocean[i][j] = new Square(i, j);
-            }
-        }
+    public Integer getSideLength() {
+        return sideLength;
     }
 
-    public void isPlacementOk(){
+    public void initOcean() {
+        Integer n = sideLength;
+        ocean = new Square[n][n];
 
+        for (int y = 0; y < ocean.length; y++) {
+            for (int x = 0; x < ocean[y].length; x++) {
+                ocean[y][x] = new Square(y, x);
+            }
+        }
     }
 }

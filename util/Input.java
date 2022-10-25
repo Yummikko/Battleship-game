@@ -4,6 +4,8 @@ import view.Display;
 import java.util.Scanner;
 
 public class Input {
+
+    public static final String ANSI_BLACK = "\033[1;30m";
     Scanner userInput = new Scanner(System.in);
 
     public void playersName() {

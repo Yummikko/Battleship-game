@@ -6,9 +6,9 @@ public class Square {
     private SquareStatus squareStatus;
 
     public Square(int x, int y) {
-        X = x;
-        Y = y;
-        this.squareStatus = squareStatus;
+        this.X = x;
+        this.Y = y;
+        this.squareStatus = SquareStatus.EMPTY;
     }
 
     public int getX() {
@@ -23,7 +23,7 @@ public class Square {
         return squareStatus;
     }
 
-
+    public void setSquareStatus(SquareStatus squareStatus) {
+        this.squareStatus = squareStatus;
+    }
 }
-
-
