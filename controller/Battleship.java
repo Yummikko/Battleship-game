@@ -13,6 +13,13 @@ public class Battleship {
     }
 
     public void playGame() {
+        display.showLogo();
+        input.clickToContinue();
+        display.showMenu();
+        display.gameRules();
+        display.clickToContinue();
+        input.clickToContinue();
+        input.playersName();
 
     }
 }

@@ -4,8 +4,8 @@ import view.Display;
 
 public class Main {
     public static void main(String[] args) {
-        Display display = new Display();
         Input input = new Input();
+        Display display = new Display(input);
         Battleship battleship = new Battleship(display, input);
 
         battleship.playGame();
