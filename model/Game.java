@@ -17,5 +17,7 @@ public class Game {
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
         ocean = new Board(oceanSize);
+        DISPLAY.showShips();
+        DISPLAY.shipSizeVisualisation();
     }
 }

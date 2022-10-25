@@ -38,10 +38,10 @@ public class Battleship {
                     break;
                 case 2:
                     run = false;
-                    display.printExitMessage();
+                    display.printBlueMessages("Thank You for playing, see You next time!");
                     break;
                 default:
-                    display.wrongInput();
+                    display.printRedMessages("Invalid input, please try again!");
                     display.showMenu();
             }
         }

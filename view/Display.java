@@ -65,17 +65,14 @@ public class Display {
 
     public void showBoard(){}
 
-    public void printMessages(String message) {
-        System.out.println(message);
+    public void printRedMessages(String message) {
+        System.out.println(Colors.ANSI_RED + message);
     }
 
-    public void wrongInput(){
-        System.out.println(Colors.ANSI_RED + "Invalid input, please try again!");
+    public void printBlueMessages(String message) {
+        System.out.println(Colors.CYAN_BOLD + message);
     }
 
-    public void printExitMessage() {
-        System.out.println(Colors.CYAN_BOLD+"Thank You for playing, see You next time!");
-    }
 
     public void endTurn() {
         System.out.println(Colors.CYAN_BOLD+"Please click any button on Your keyboard to end Your turn");
@@ -114,6 +111,21 @@ public class Display {
         System.out.println("                                                 ╚═════╝ ╚═╝  ╚═╝ ╚════╝  ╚════╝    ╚═╝   ╚═╝╚═╝  ╚══╝ ╚═════╝   ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝\n");
 
     }
+
+    public void shipSizeVisualisation(){
+        System.out.println("Carrier: ◯ ◯ ◯ ◯ ◯    Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯");
+    }
+
+    public void showShips() {
+        System.out.println("   __[]__" + "\t\t\t\t    _~ ");
+        System.out.println(" _|_o_o_o\\__" + "\t\t\t _~ )_)_~");
+        System.out.println("__|_o_o_o\\__"+ "\t\t\t )_))_))_)");
+        System.out.println("\\          /"+ "\t\t\t _!__!__!_");
+        System.out.println( " \\......../"+ "\t\t\t\t \\_______/");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+
 }
 
 
