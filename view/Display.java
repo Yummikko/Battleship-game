@@ -113,17 +113,18 @@ public class Display {
     }
 
     public void shipSizeVisualisation(){
-        System.out.println("Carrier: ◯ ◯ ◯ ◯ ◯    Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯");
+        System.out.println("Carrier: ◯ ◯ ◯ ◯ ◯        Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯");
     }
 
     public void showShips() {
-        System.out.println("  __|__ |___| |\\" + "\t\t\t\t   __[]__" + "\t\t\t\t    _~ " +"\t\t\t\t ");
-        System.out.println("  |___| |___| |o \\" + "\t\t\t\t _|_o_o_o\\__" + "\t\t\t _~ )_)_~");
-        System.out.println(" _|___| |___| |__o\\" + "\t\t\t\t__|_o_o_o\\__"+ "\t\t\t )_))_))_)");
-        System.out.println("/...\\_____|___|____\\  " + "\t\t\t\\          /"+ "\t\t\t _!__!__!_");
-        System.out.println("\\   o * o * * o o  /" + "\t\t\t \\......../"+ "\t\t\t\t \\_______/");
+        System.out.println("  __|__ |___| |\\" + "\t\t\t   __[]__" + "\t\t\t    _~ " +"\t\t\t\t    . ");
+        System.out.println("  |___| |___| |o \\" + "\t\t\t _|_o_o_o\\__" + "\t\t _~ )_)_~" +"\t\t\t   /|\\");
+        System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__"+ "\t\t )_))_))_)" +"\t\t\t  /_|_\\");
+        System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /"+ "\t\t _!__!__!_" +"\t\t    ____|____");
+        System.out.println("\\   o * o * * o o  /" + "\t\t \\......../"+ "\t\t\t \\_______/" +"\t\t    \\_______/");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
+
 
 }
 
