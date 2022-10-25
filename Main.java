@@ -7,7 +7,6 @@ public class Main {
         Input input = new Input();
         Display display = new Display(input);
         Battleship battleship = new Battleship(display, input);
-
-        battleship.playGame();
+        battleship.gameMenu();
     }
 }

@@ -1,8 +1,9 @@
 package util;
+import view.Display;
+
 import java.util.Scanner;
 
 public class Input {
-
     Scanner userInput = new Scanner(System.in);
 
     public void playersName() {
@@ -19,6 +20,25 @@ public class Input {
 
     public void clickToContinue() {
         String clickToContinue = userInput.nextLine();
+    }
+
+    public int chooseMenuOption() {
+        String input = userInput.nextLine();
+        while (!checkIfInteger(input)) {
+            input = userInput.nextLine();
+        }
+        return Integer.parseInt(input);
+    }
+
+    private boolean checkIfInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (
+                NumberFormatException e) {
+            // wrongInput();
+            return false;
+        }
     }
 
 }
