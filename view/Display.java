@@ -130,31 +130,30 @@ public class Display {
     }
 
     public void showBoard(Square[][] ocean){
-        int width_and_height = input.getOceanSize();
 
         String tableRowStart = "  +-----";
         String tableRow = "+-----";
         String tableRowEnd = "+-----+";
         int count = 1;
 
-        for(int i = 0; i < width_and_height; ++i)
+        for(int i = 0; i < ocean.length; ++i)
             System.out.format(Colors.ANSI_BLACK + "    %2s", (char)(i + 'A'));
         System.out.println();
 
-        for(int i = 0; i < board.getOcean().length ; i++) {
+        for(int i = 0; i < ocean.length ; i++) {
             System.out.print(Colors.ANSI_BLACK + tableRowStart);
-            System.out.print(Colors.ANSI_BLACK + tableRow.repeat(width_and_height - 2));
+            System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
             System.out.println(Colors.ANSI_BLACK + tableRowEnd);
             System.out.print(i + 1);
 
-            for(int j = 0; j < board.getOcean()[i].length;j++) {
+            for(int j = 0; j < ocean[i].length;j++) {
                 if (i < 9) {
                     System.out.format(Colors.ANSI_BLACK + " | %2s ", " ");
                 } else {
                     System.out.format(Colors.ANSI_BLACK + "| %2s  ", " ");
                 }
 
-                if(j == width_and_height - 1) {
+                if(j == ocean.length - 1) {
                     if (i < 9) {
                         System.out.print(Colors.ANSI_BLACK + " |");
                     } else {
@@ -163,51 +162,12 @@ public class Display {
                 }
             }
             System.out.println();
-            if(i == width_and_height - 1) {
+            if(i == ocean.length - 1) {
                 System.out.print(Colors.ANSI_BLACK + tableRowStart);
-                System.out.print(Colors.ANSI_BLACK + tableRow.repeat(width_and_height - 2));
+                System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
                 System.out.println(Colors.ANSI_BLACK + tableRowEnd);
             }
         }
     }
 
-//    public void displayBoard(Square[][] ocean){
-//        String header = Input.makeHeader(ocean.length);
-//        System.out.println(header);
-//        for (int i = 0; i < ocean.length; i++){
-//            StringBuilder row;
-//            if (i < 10){
-//                row = new StringBuilder(" " + i);
-//            }
-//            else{
-//                row = new StringBuilder(i);
-//            }
-//            for ( int j = 0; j < ocean.length; j++){
-//                if(ocean[i][j].graphic().equals("S")){
-//                    row.append(" ");
-//                }
-//                else{
-//                    row.append(ocean[i][j].graphic());
-//                }
-//            }
-//            System.out.println(row);
-//        }
-//    }
-
-//    public void printBoard(Square[][] ocean) {
-//        System.out.println(".|  1   2   3  4   5  6   7   8   9  10 " + "|");
-//        for (int i = 0; i < ocean.length; i++) {
-//            System.out.print((char) (i + 'A') + "|" + "  ");
-//            for (int j = 0; j < ocean.length; j++) {
-//                if (ocean[i][j].getSquareStatus().equals(SquareStatus.EMPTY)) {
-//                    System.out.print("  ");
-//                }
-//                System.out.println("|");
-//
-//            }
-//            System.out.println("----------------------------------------/");
-//
-//        }
-//    }
 }
-
