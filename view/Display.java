@@ -170,4 +170,16 @@ public class Display {
         }
     }
 
+    public void printPlacementMode() {
+        System.out.println("If you want to place your ships yourself please select 1.");
+        System.out.println("If you want to place your ships automatically, please select 2.");
+    }
+
+    public void printWrongValueAlert(String valueRange){
+        System.out.println("Please provide correct value in " + valueRange + ".");
+    }
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
 }

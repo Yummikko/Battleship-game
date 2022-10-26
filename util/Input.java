@@ -1,6 +1,11 @@
 package util;
 
+import board.Square;
 import view.Display;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import static java.lang.System.in;
 
@@ -45,7 +50,7 @@ public class Input {
     }
 
     public int getOceanSize() {
-        while(true) {
+        while (true) {
             System.out.println("Please provide ocean size: ");
             Scanner oceanSize = new Scanner(in);
             String userInput = oceanSize.nextLine();
@@ -63,24 +68,80 @@ public class Input {
         return false;
     }
 
-//    public static String makeHeader(int size){
-//        char[] letters = getLetters(size, true);
-//        StringBuilder header = new StringBuilder("  ");
-//        for (char letter: letters) {
-//            header.append(" ").append(letter);
+    public int getValue() {
+        while (true) {
+            System.out.println("Choose placement 1 for manual and 2 for random: ");
+            Scanner placement = new Scanner(in);
+            String userInput = placement.nextLine();
+            if (checkInput(userInput)) {
+                return Integer.parseInt(userInput);
+            }
+            System.out.println("You need to provide a number between 1 and 2!");
+        }
+    }
+
+    public int getRowNumber() {
+        while (true) {
+            System.out.println("Choose row: ");
+            Scanner row = new Scanner(in);
+            String userInput = row.nextLine();
+            if (checkInput(userInput)) {
+                return Integer.parseInt(userInput);
+            }
+            System.out.println("Wrong row number!");
+        }
+    }
+
+    public Boolean checkLetter(String input) {
+        if (input.length() == 1) {
+            return true;
+        } else {
+            System.out.println("Enter a single character to continue.");
+            return false;
+        }
+    }
+
+    public static String[] splitString(String str) {
+        StringBuffer alpha = new StringBuffer(),
+                num = new StringBuffer();
+
+        for (int i=0; i<str.length(); i++)
+        {
+            if (Character.isDigit(str.charAt(i)))
+                num.append(str.charAt(i));
+            else
+                alpha.append(str.charAt(i));
+        }
+
+
+        String letters = alpha.toString();
+        String numbers = num.toString();
+        return new String[]{letters, numbers};
+    }
+
+    public static Integer convertLetterToNumber(String letterToConvert) {
+        char charToConvert = letterToConvert.charAt(0);
+        return charToConvert - 'a' + 1;
+    }
+//    public int getColumnLetter() {
+//        System.out.println("Choose column: ");
+//        Scanner column = new Scanner(in);
+//        String userInput = column.nextLine();
+//        if (userInput) {
+//            return userInput;
 //        }
-//        return String.valueOf(header);
+//        System.out.println("Wrong row number!");
 //    }
-//    public static char[] getLetters(int count, boolean capital){
-//        char[] alphabet = new char[count];
-//        int a;
-//        if(capital)
-//            a = 65;
-//        else
-//            a = 97;
-//        for (int i = 0; i < count; i++) {
-//            alphabet[i] = (char) (a + i);
-//        }
-//        return alphabet;
-//    }
+
+    public int getOrientation () {
+        String orientation = userInput.next();
+        String[] letterList = {"H", "V"};
+        if ((Arrays.asList(letterList)).contains(orientation.toUpperCase())) {
+            int orientationNumber = (Arrays.asList(letterList)).indexOf(orientation.toUpperCase());
+            return orientationNumber;
+        } else {
+            System.out.println("Wrong row number!");
+        }
+        return 0;
+    }
 }

@@ -1,5 +1,7 @@
 package model;
 
+
+
 public enum ShipType {
     CARRIER(5),
     CRUISER(4),
@@ -8,14 +10,11 @@ public enum ShipType {
     DESTROYER(1);
     ;
 
-    private final int length;
+    private final int shipLength;
 
-    ShipType(int length) {
-        this.length = length;
+    ShipType(int shipLength) {this.shipLength = shipLength;}
+
+    public int getShipLength() {
+        return this.shipLength;
     }
-
-    public int getLength() {
-        return length;
-    }
-
 }
