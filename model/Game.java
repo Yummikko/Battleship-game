@@ -5,7 +5,7 @@ import util.Input;
 import view.Display;
 
 public class Game {
-    private Board ocean;
+    private Board board;
     private final Display DISPLAY;
     private final Input INPUT;
 
@@ -16,7 +16,9 @@ public class Game {
 
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
-        ocean = new Board(oceanSize);
+        board = new Board(oceanSize);
+        board.initOcean();
+        DISPLAY.displayBoard(board.getOcean());
         DISPLAY.showShips();
         DISPLAY.shipSizeVisualisation();
     }
