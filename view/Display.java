@@ -1,69 +1,72 @@
 package view;
 
+import board.Board;
+import board.Square;
+import board.SquareStatus;
 import util.Input;
 
 public class Display {
     Input input;
+    private Board board;
 
     public Display(Input input) {
         this.input = input;
     }
 
-    public void showLogo(){
+    public void showLogo() {
 
-        System.out.println(Colors.ANSI_BLACK +"                                                                                                        ▄██");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                                        █▌█");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                                      ''█ █'");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                                    ,,,,█,█▄,,,");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                                   ╓█▀▀▀▀▀▀▀▀█▀");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                         ██▌      █▀         █Ç         ▌█");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                         ██      █,,,▄▄▄▄,,   █▄        █▐█");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                        ▐▌█   ,  ▀▀    █ ¬█ ▀▀▀▀N      ▐▌█▌");
-        System.out.println(Colors.ANSI_BLACK+"                                                                                ▄,,,    ▐C█    ██▀▀▀▓▓███████▀$ßMM╦▄   ██▐▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                ▀▌══∞∞▄▄██▀▀▀▀▀══∞∞⌐           █▀      █▐▌▐▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                               ,█              -▐█▀           █▀     ▐▌█ ]▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                               █                █`           ▐▌      ██   █");
-        System.out.println(Colors.ANSI_BLACK +"                                                                             ▐▌                █            █⌐     █▐▌   ╘▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                            ▐▌                █            █     ╒▌█     ▐█▄▄");
-        System.out.println(Colors.ANSI_BLACK +"                                                                              ▌                ╘█           └█    ██████▀▀▀▀▀`");
-        System.out.println(Colors.ANSI_BLACK +"                                                                               █⌐                ▐█▄▄▄▄▄▄▄▄▄, ▀▌  ▐▐▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                █ ,▄▄▄4█▀█▀▀RN▄▄▄▄▐█ █   █  .▀▀▀▀]▌█,,,▄▄▄▄▄▄▄▄");
-        System.out.println(Colors.ANSI_BLACK +"                                                                        ▀▀███▄▄▄▄█▄▄▄▄▄▌,█,        ▀▀█   █  ▐█▀▀▀▀▀▀▀▀▀`- -  █▌");
-        System.out.println(Colors.ANSI_BLACK +"                                                                              ▀█████▄▄▄▄▄▄▄▄▄▀▀█▄  ,▐▌  ,█,▄█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄██");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                 ▀█▄     '`▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀''`  -`     ▐█");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                   ▀█                                   ,█");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                     ██                                 ▄█`");
-        System.out.println(Colors.ANSI_BLACK +"                                                                                     █ , ▄▄ ,▄▄  ▄▄  ▄▄  ▄▄, ▄▄,  ▄▄  ██");
-        System.out.println(Colors.CYAN_BOLD +"                                                                               ▀▀████▀▀-`▀████▀`▀██▄██▀'▀██▄██▀█▀▀`▀▀███▀▀▀██▄██▀");
-        System.out.println(Colors.CYAN_BOLD +"                                                              ▀██▄██▀▀██▄██▀▀▀████▀▀-`▀████▀`▀██▄██▀'▀████▀▀`▀▀███▀▀▀▀████▀▀▀██▄██▀ ██▀▀▀██▄██▀");
-        System.out.println(Colors.CYAN_BOLD +"                                                                          ▀██▄██▀ ▀▀████▀▀-`▀████▀`▀██▄██▀'▀████▀▀`▀▀███▀▀▀██▄██▀▀██▄██▀/\n");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                                        ▄██");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                                        █▌█");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                                      ''█ █'");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                                    ,,,,█,█▄,,,");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                                   ╓█▀▀▀▀▀▀▀▀█▀");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                         ██▌      █▀         █Ç         ▌█");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                         ██      █,,,▄▄▄▄,,   █▄        █▐█");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                        ▐▌█   ,  ▀▀    █ ¬█ ▀▀▀▀N      ▐▌█▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                ▄,,,    ▐C█    ██▀▀▀▓▓███████▀$ßMM╦▄   ██▐▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                ▀▌══∞∞▄▄██▀▀▀▀▀══∞∞⌐           █▀      █▐▌▐▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                               ,█              -▐█▀           █▀     ▐▌█ ]▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                               █                █`           ▐▌      ██   █");
+        System.out.println(Colors.ANSI_BLACK + "                                                                             ▐▌                █            █⌐     █▐▌   ╘▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                            ▐▌                █            █     ╒▌█     ▐█▄▄");
+        System.out.println(Colors.ANSI_BLACK + "                                                                              ▌                ╘█           └█    ██████▀▀▀▀▀`");
+        System.out.println(Colors.ANSI_BLACK + "                                                                               █⌐                ▐█▄▄▄▄▄▄▄▄▄, ▀▌  ▐▐▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                █ ,▄▄▄4█▀█▀▀RN▄▄▄▄▐█ █   █  .▀▀▀▀]▌█,,,▄▄▄▄▄▄▄▄");
+        System.out.println(Colors.ANSI_BLACK + "                                                                        ▀▀███▄▄▄▄█▄▄▄▄▄▌,█,        ▀▀█   █  ▐█▀▀▀▀▀▀▀▀▀`- -  █▌");
+        System.out.println(Colors.ANSI_BLACK + "                                                                              ▀█████▄▄▄▄▄▄▄▄▄▀▀█▄  ,▐▌  ,█,▄█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄██");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                 ▀█▄     '`▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀''`  -`     ▐█");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                   ▀█                                   ,█");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                     ██                                 ▄█`");
+        System.out.println(Colors.ANSI_BLACK + "                                                                                     █ , ▄▄ ,▄▄  ▄▄  ▄▄  ▄▄, ▄▄,  ▄▄  ██");
+        System.out.println(Colors.CYAN_BOLD + "                                                                               ▀▀████▀▀-`▀████▀`▀██▄██▀'▀██▄██▀█▀▀`▀▀███▀▀▀██▄██▀");
+        System.out.println(Colors.CYAN_BOLD + "                                                              ▀██▄██▀▀██▄██▀▀▀████▀▀-`▀████▀`▀██▄██▀'▀████▀▀`▀▀███▀▀▀▀████▀▀▀██▄██▀ ██▀▀▀██▄██▀");
+        System.out.println(Colors.CYAN_BOLD + "                                                                          ▀██▄██▀ ▀▀████▀▀-`▀████▀`▀██▄██▀'▀████▀▀`▀▀███▀▀▀██▄██▀▀██▄██▀/\n");
 
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ██████╗  █████╗ ████████╗████████╗██╗     ███████╗ ██████╗██╗  ██╗██╗██████╗ ");
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║     ██╔════╝██╔════╝██║  ██║██║██╔══██╗");
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ██████╦╝███████║   ██║      ██║   ██║     █████╗  ╚█████╗ ███████║██║██████╔╝");
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ██╔══██╗██╔══██║   ██║      ██║   ██║     ██╔══╝   ╚═══██╗█╔══ ██║██║██╔═══╝ ");
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ██████╦╝██║  ██║   ██║      ██║   ███████╗███████╗██████╔╝██║  ██║██║██║     ");
-        System.out.println(Colors.ANSI_BLACK +       "                                                                ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝    \n");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ██████╗  █████╗ ████████╗████████╗██╗     ███████╗ ██████╗██╗  ██╗██╗██████╗ ");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║     ██╔════╝██╔════╝██║  ██║██║██╔══██╗");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ██████╦╝███████║   ██║      ██║   ██║     █████╗  ╚█████╗ ███████║██║██████╔╝");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ██╔══██╗██╔══██║   ██║      ██║   ██║     ██╔══╝   ╚═══██╗█╔══ ██║██║██╔═══╝ ");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ██████╦╝██║  ██║   ██║      ██║   ███████╗███████╗██████╔╝██║  ██║██║██║     ");
+        System.out.println(Colors.ANSI_BLACK + "                                                                ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝    \n");
         System.out.println("\n");
 
 
     }
 
-    public void showMenu(){
-        System.out.println(Colors.CYAN_BOLD +"press: \n" + Colors.ANSI_BLACK +
+    public void showMenu() {
+        System.out.println(Colors.CYAN_BOLD + "press: \n" + Colors.ANSI_BLACK +
                 "\t 0 - Play game! \n" +
                 "\t 1 - Print game rules \n" +
                 "\t 2 - Exit game\n");
     }
 
     public void gameRules() {
-        System.out.println(Colors.CYAN_BOLD+ "Here are some rules of the game: ");
-        System.out.println(Colors.ANSI_BLACK+"1. Each ship must be placed horizontally orvertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
-        System.out.println(Colors.ANSI_BLACK+"2. Ships can't touch each other (touching corners are okay)");
-        System.out.println(Colors.ANSI_BLACK+"3. You cannot change the position of the ships after the game begins.\n");
+        System.out.println(Colors.CYAN_BOLD + "Here are some rules of the game: ");
+        System.out.println(Colors.ANSI_BLACK + "1. Each ship must be placed horizontally orvertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
+        System.out.println(Colors.ANSI_BLACK + "2. Ships can't touch each other (touching corners are okay)");
+        System.out.println(Colors.ANSI_BLACK + "3. You cannot change the position of the ships after the game begins.\n");
     }
 
-    public void showBoard(){}
 
     public void printRedMessages(String message) {
         System.out.println(Colors.ANSI_RED + message);
@@ -75,14 +78,15 @@ public class Display {
 
 
     public void endTurn() {
-        System.out.println(Colors.CYAN_BOLD+"Please click any button on Your keyboard to end Your turn");
+        System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to end Your turn");
     }
 
     public void clickToContinue() {
-        System.out.println(Colors.CYAN_BOLD+"Please click any button on Your keyboard to continue\n");
+        System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to continue\n");
     }
 
-    public void printWinnerName() {}
+    public void printWinnerName() {
+    }
 
 
     public void waitingScreen() {
@@ -102,7 +106,7 @@ public class Display {
         System.out.println("\nPlease click any button on Your keyboard to start");
     }
 
-    public void shootingPhase(){
+    public void shootingPhase() {
         System.out.println("                                                  ██████╗██╗  ██╗ █████╗  █████╗ ████████╗██╗███╗  ██╗ ██████╗   ██████╗ ██╗  ██╗ █████╗  ██████╗███████╗");
         System.out.println("                                                 ██╔════╝██║  ██║██╔══██╗██╔══██╗╚══██╔══╝██║████╗ ██║██╔════╝   ██╔══██╗██║  ██║██╔══██╗██╔════╝██╔════╝");
         System.out.println("                                                 ╚█████╗ ███████║██║  ██║██║  ██║   ██║   ██║██╔██╗██║██║  ██╗   ██████╔╝███████║███████║╚█████╗ █████╗  ");
@@ -112,11 +116,54 @@ public class Display {
 
     }
 
-    public void shipSizeVisualisation(){
+    public void shipSizeVisualisation() {
         System.out.println("Carrier: ◯ ◯ ◯ ◯ ◯        Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯");
     }
 
     public void showShips() {
+
+    public void showBoard(Square[][] ocean){
+
+        String tableRowStart = "  +-----";
+        String tableRow = "+-----";
+        String tableRowEnd = "+-----+";
+        int count = 1;
+
+        for(int i = 0; i < ocean.length; ++i)
+            System.out.format(Colors.ANSI_BLACK + "    %2s", (char)(i + 'A'));
+        System.out.println();
+
+        for(int i = 0; i < ocean.length ; i++) {
+            System.out.print(Colors.ANSI_BLACK + tableRowStart);
+            System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
+            System.out.println(Colors.ANSI_BLACK + tableRowEnd);
+            System.out.print(i + 1);
+
+            for(int j = 0; j < ocean[i].length;j++) {
+                if (i < 9) {
+                    System.out.format(Colors.ANSI_BLACK + " | %2s ", " ");
+                } else {
+                    System.out.format(Colors.ANSI_BLACK + "| %2s  ", " ");
+                }
+
+                if(j == ocean.length - 1) {
+                    if (i < 9) {
+                        System.out.print(Colors.ANSI_BLACK + " |");
+                    } else {
+                        System.out.print(Colors.ANSI_BLACK + "|");
+                    }
+                }
+            }
+            System.out.println();
+            if(i == ocean.length - 1) {
+                System.out.print(Colors.ANSI_BLACK + tableRowStart);
+                System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
+                System.out.println(Colors.ANSI_BLACK + tableRowEnd);
+            }
+        }
+    }
+
+
         System.out.println("  __|__ |___| |\\" + "\t\t\t   __[]__" + "\t\t\t    _~ " +"\t\t\t\t    . ");
         System.out.println("  |___| |___| |o \\" + "\t\t\t _|_o_o_o\\__" + "\t\t _~ )_)_~" +"\t\t\t   /|\\");
         System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__"+ "\t\t )_))_))_)" +"\t\t\t  /_|_\\");
@@ -125,6 +172,5 @@ public class Display {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
+
 }
-
-

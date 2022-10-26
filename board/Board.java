@@ -32,4 +32,8 @@ public class Board {
             }
         }
     }
+
+    public void isPlacementOk(){
+
+    }
 }
