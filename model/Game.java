@@ -27,10 +27,15 @@ public class Game {
         Integer oceanSize = INPUT.getOceanSize();
         Player player = new Player();
         player1Board = new Board(oceanSize);
-        //player2Board = new Board(oceanSize);
         player1Board.initOcean();
-//        player2Board.initOcean();
         BOARDFACTORY.manualPlacement(player, player1Board);
+        endTurn();
+        DISPLAY.waitingScreen();
+        INPUT.clickToContinue();
+        player2Board = new Board(oceanSize);
+        player2Board.initOcean();
+        BOARDFACTORY.manualPlacement(player, player2Board);
+
 
 
         //DISPLAY.showBoard(player1Board.getOcean());
