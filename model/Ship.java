@@ -16,9 +16,33 @@ public class Ship {
     private int shipStartX;
     private int shipStartY;
 
+    public Ship(Integer shipStartX, Integer shipStartY) {
+        this.shipStartX = shipStartX;
+        this.shipStartY = shipStartY;
+    }
+
+    public void setShipCoordinates(Integer shipStartX, Integer shipStartY) {
+        this.shipStartX = shipStartX;
+        this.shipStartY = shipStartY;
+    }
+//
+//    public void setShipStartY() {
+//        this.shipStartY = shipStartY;
+//    }
+
+    public Integer getX() {
+        return shipStartX;
+    }
+
+    public Integer getY() {
+        return shipStartY;
+    }
+
+
     public enum ShipOrientation {
         VERTICAL, HORIZONTAL
     }
+
     public Ship(ShipType shipType) {
         this.shipType = shipType;
         this.squaresList = new ArrayList<>();

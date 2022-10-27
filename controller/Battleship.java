@@ -1,5 +1,6 @@
 package controller;
 
+import board.BoardFactory;
 import model.Game;
 import util.Input;
 import view.Display;
@@ -7,15 +8,17 @@ import view.Display;
 public class Battleship {
     Display display;
     Input input;
+
+    BoardFactory boardFactory;
     private Game game;
     public boolean run;
 
 
 
-    public Battleship(Display display, Input input) {
+    public Battleship(Display display, Input input, BoardFactory boardFactory) {
         this.display = display;
         this.input = input;
-        game = new Game(display, input);
+        game = new Game(display, input, boardFactory);
         run = true;
 
     }

@@ -1,6 +1,7 @@
 package util;
 
 import board.Square;
+import model.Ship;
 import view.Display;
 
 import java.util.Arrays;
@@ -11,8 +12,16 @@ import static java.lang.System.in;
 
 public class Input {
 
+    private InputController inputController;
     public static final String ANSI_BLACK = "\033[1;30m";
+    public Input input;
     Scanner userInput = new Scanner(in);
+
+
+    public Input(InputController inputController) {
+        this.inputController = inputController;
+    }
+
 
     public void playersName() {
 
@@ -80,49 +89,36 @@ public class Input {
         }
     }
 
-    public int getRowNumber() {
+    public String[] chooseShipPlace() {
         while (true) {
-            System.out.println("Choose row: ");
-            Scanner row = new Scanner(in);
-            String userInput = row.nextLine();
-            if (checkInput(userInput)) {
-                return Integer.parseInt(userInput);
+            Scanner from = new Scanner(in);
+            String shipPlace = from.nextLine();
+            String[] splittedInput = inputController.splitString(shipPlace);
+            if (inputController.checkLetter(splittedInput[0])) {
+                if (inputController.checkNumber(splittedInput[1])) {
+                    return splittedInput;
+                } else {
+                    System.out.println("You need to provide a number between 10 and ocen size!");
+                }
             }
-            System.out.println("Wrong row number!");
         }
     }
 
-    public Boolean checkLetter(String input) {
-        if (input.length() == 1) {
-            return true;
-        } else {
-            System.out.println("Enter a single character to continue.");
-            return false;
-        }
+    public Integer[] convertedCoordinates() {
+        String[] pawnStartPosition = chooseShipPlace();
+        String pawnChar = pawnStartPosition[0];
+        String pawnNum = pawnStartPosition[1];
+
+        Integer convertedChar = inputController.convertLetterToNumber(pawnChar);
+        Integer convertedNumber = Integer.parseInt(pawnNum);
+
+        Integer[] ship = {convertedNumber - 1, convertedChar - 1};
+//
+//        Pawn pawn = board.getPawnByPosition(coordinates);
+        return ship;
     }
 
-    public static String[] splitString(String str) {
-        StringBuffer alpha = new StringBuffer(),
-                num = new StringBuffer();
 
-        for (int i=0; i<str.length(); i++)
-        {
-            if (Character.isDigit(str.charAt(i)))
-                num.append(str.charAt(i));
-            else
-                alpha.append(str.charAt(i));
-        }
-
-
-        String letters = alpha.toString();
-        String numbers = num.toString();
-        return new String[]{letters, numbers};
-    }
-
-    public static Integer convertLetterToNumber(String letterToConvert) {
-        char charToConvert = letterToConvert.charAt(0);
-        return charToConvert - 'a' + 1;
-    }
 //    public int getColumnLetter() {
 //        System.out.println("Choose column: ");
 //        Scanner column = new Scanner(in);
@@ -133,15 +129,15 @@ public class Input {
 //        System.out.println("Wrong row number!");
 //    }
 
-    public int getOrientation () {
-        String orientation = userInput.next();
-        String[] letterList = {"H", "V"};
-        if ((Arrays.asList(letterList)).contains(orientation.toUpperCase())) {
-            int orientationNumber = (Arrays.asList(letterList)).indexOf(orientation.toUpperCase());
-            return orientationNumber;
-        } else {
-            System.out.println("Wrong row number!");
+            public int getOrientation() {
+                String orientation = userInput.next();
+                String[] letterList = {"H", "V"};
+                if ((Arrays.asList(letterList)).contains(orientation.toUpperCase())) {
+                    int orientationNumber = (Arrays.asList(letterList)).indexOf(orientation.toUpperCase());
+                    return orientationNumber;
+                } else {
+                    System.out.println("Wrong row number!");
+                }
+                return 0;
+            }
         }
-        return 0;
-    }
-}
