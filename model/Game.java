@@ -18,6 +18,11 @@ public class Game {
         this.BOARDFACTORY = boardFactory;
     }
 
+    public void endTurn(){
+        DISPLAY.printBlueMessages("\nClick enter to end Your turn.");
+        INPUT.clickToContinue();
+    }
+
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
         Player player = new Player();
@@ -32,5 +37,6 @@ public class Game {
         //DISPLAY.showBoard(player2Board.getOcean());
 //        DISPLAY.showShips();
 //        DISPLAY.shipSizeVisualisation();
+
     }
 }
