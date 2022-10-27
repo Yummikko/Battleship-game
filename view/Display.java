@@ -148,9 +148,9 @@ public class Display {
 
             for(int j = 0; j < ocean[i].length;j++) {
                 if (i < 9) {
-                    System.out.format(Colors.ANSI_BLACK + " | %2s ", " ");
+                    System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
                 } else {
-                    System.out.format(Colors.ANSI_BLACK + "| %2s  ", " ");
+                    System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
                 }
 
                 if(j == ocean.length - 1) {
@@ -168,6 +168,18 @@ public class Display {
                 System.out.println(Colors.ANSI_BLACK + tableRowEnd);
             }
         }
+    }
+
+    public void printPlacementMode() {
+        System.out.println("If you want to place your ships yourself please select 1.");
+        System.out.println("If you want to place your ships automatically, please select 2.");
+    }
+
+    public void printWrongValueAlert(String valueRange){
+        System.out.println("Please provide correct value in " + valueRange + ".");
+    }
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 
 }

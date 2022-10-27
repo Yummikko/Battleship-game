@@ -1,13 +1,25 @@
 package util;
 
+import board.Square;
+import model.Ship;
 import view.Display;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import static java.lang.System.in;
 
 public class Input {
 
-    public static final String ANSI_BLACK = "\033[1;30m";
+    private InputController inputController;
     Scanner userInput = new Scanner(in);
+
+
+    public Input(InputController inputController) {
+        this.inputController = inputController;
+    }
+
 
     public void playersName() {
 
@@ -19,7 +31,6 @@ public class Input {
         System.out.println("\nHello " + firstPlayerName + " & " + secondPlayerName + ", welcome to the Battleship Game!\n");
 
     }
-
 
     public void clickToContinue() {
         String clickToContinue = userInput.nextLine();
@@ -45,7 +56,7 @@ public class Input {
     }
 
     public int getOceanSize() {
-        while(true) {
+        while (true) {
             System.out.println("Please provide ocean size: ");
             Scanner oceanSize = new Scanner(in);
             String userInput = oceanSize.nextLine();
@@ -63,24 +74,56 @@ public class Input {
         return false;
     }
 
-//    public static String makeHeader(int size){
-//        char[] letters = getLetters(size, true);
-//        StringBuilder header = new StringBuilder("  ");
-//        for (char letter: letters) {
-//            header.append(" ").append(letter);
+//    public int getValue() {
+//        while (true) {
+//            System.out.println("Choose placement 1 for manual and 2 for random: ");
+//            Scanner placement = new Scanner(in);
+//            String userInput = placement.nextLine();
+//            if (checkInput(userInput)) {
+//                return Integer.parseInt(userInput);
+//            }
+//            System.out.println("You need to provide a number between 1 and 2!");
 //        }
-//        return String.valueOf(header);
 //    }
-//    public static char[] getLetters(int count, boolean capital){
-//        char[] alphabet = new char[count];
-//        int a;
-//        if(capital)
-//            a = 65;
-//        else
-//            a = 97;
-//        for (int i = 0; i < count; i++) {
-//            alphabet[i] = (char) (a + i);
-//        }
-//        return alphabet;
-//    }
+
+    public String[] chooseShipPlace() {
+        while (true) {
+            Scanner from = new Scanner(in);
+            String shipPlace = from.nextLine();
+            String[] splittedInput = inputController.splitString(shipPlace);
+            if (inputController.checkLetter(splittedInput[0])) {
+                if (inputController.checkNumber(splittedInput[1])) {
+                    return splittedInput;
+                } else {
+                    System.out.println("You need to provide a number between 10 and ocen size!");
+                }
+            }
+        }
+    }
+
+    public Integer[] convertedCoordinates() {
+        String[] pawnStartPosition = chooseShipPlace();
+        String pawnChar = pawnStartPosition[0];
+        String pawnNum = pawnStartPosition[1];
+
+        Integer convertedChar = inputController.convertLetterToNumber(pawnChar);
+        Integer convertedNumber = Integer.parseInt(pawnNum);
+
+        Integer[] ship = {convertedNumber - 1, convertedChar - 1};
+
+        return ship;
+    }
+
+
+    public int getOrientation() {
+        String orientation = userInput.next();
+        String[] letterList = {"H", "V"};
+        if ((Arrays.asList(letterList)).contains(orientation.toUpperCase())) {
+            int orientationNumber = (Arrays.asList(letterList)).indexOf(orientation.toUpperCase());
+            return orientationNumber;
+        } else {
+            System.out.println("Wrong row number!");
+        }
+        return 0;
+    }
 }

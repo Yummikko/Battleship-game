@@ -1,6 +1,9 @@
 package board;
 
+import model.Ship;
 import util.Input;
+
+import java.util.ArrayList;
 
 public class Board {
     private Square[][] ocean;
@@ -28,12 +31,23 @@ public class Board {
 
         for (int y = 0; y < ocean.length; y++) {
             for (int x = 0; x < ocean[y].length; x++) {
-                ocean[y][x] = new Square(y, x);
+                ocean[y][x] = new Square(y, x, SquareStatus.EMPTY);
             }
         }
     }
 
-    public void isPlacementOk(){
-
-    }
+    public boolean isPlacementOk (Ship ship, Square[][] ocean) {
+        ArrayList<Square> shipsElements = ship.getSquaresList();
+        for (Square shipElement : shipsElements){
+            if (shipElement.getX() < 0 ||  shipElement.getY() < 0 || shipElement.getX() >= ocean.length ||
+                    shipElement.getY() >= ocean.length)
+            {
+                return false;
+            }
+            if ((ocean[shipElement.getY()][shipElement.getX()]).getSquareStatus() != SquareStatus.EMPTY){
+                return false;
+            }
+        }
+        return true;
+    };
 }
