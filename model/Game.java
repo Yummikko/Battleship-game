@@ -22,15 +22,15 @@ public class Game {
         Integer oceanSize = INPUT.getOceanSize();
         Player player = new Player();
         player1Board = new Board(oceanSize);
-        player2Board = new Board(oceanSize);
+        //player2Board = new Board(oceanSize);
         player1Board.initOcean();
-        player2Board.initOcean();
-        BOARDFACTORY.manualPlacement(player, player1Board, player1Board);
+//        player2Board.initOcean();
+        BOARDFACTORY.manualPlacement(player, player1Board);
 
 
-        DISPLAY.showBoard(player1Board.getOcean());
-        DISPLAY.showBoard(player2Board.getOcean());
-        DISPLAY.showShips();
-        DISPLAY.shipSizeVisualisation();
+        //DISPLAY.showBoard(player1Board.getOcean());
+        //DISPLAY.showBoard(player2Board.getOcean());
+//        DISPLAY.showShips();
+//        DISPLAY.shipSizeVisualisation();
     }
 }

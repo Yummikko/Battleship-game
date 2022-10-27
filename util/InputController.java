@@ -14,7 +14,7 @@ public class InputController {
         }
     }
 
-    public static Boolean checkLetter(String input) {
+    public Boolean checkLetter(String input) {
         if (input.length() == 1) {
             return true;
         } else {
@@ -24,13 +24,13 @@ public class InputController {
     }
 
 
-    public static Boolean checkNumber(String userPawn) {
+    public Boolean checkNumber(String userPawn) {
         if (checkIfInteger(userPawn)) {
             return (Integer.parseInt(userPawn) >= 0) && (Integer.parseInt(userPawn) <= 20);
         }
         return false;
     }
-    public static String[] splitString(String str) {
+    public String[] splitString(String str) {
         StringBuffer alpha = new StringBuffer(),
                 num = new StringBuffer();
 
@@ -49,8 +49,9 @@ public class InputController {
     }
 
 
-    public static Integer convertLetterToNumber(String letterToConvert) {
+    public Integer convertLetterToNumber(String letterToConvert) {
         char charToConvert = letterToConvert.charAt(0);
         return charToConvert - 'a' + 1;
     }
+
 }
