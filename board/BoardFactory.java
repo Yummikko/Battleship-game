@@ -4,41 +4,44 @@ import model.Player;
 import model.Ship;
 import util.Input;
 import util.InputController;
-import view.Colors;
 import view.Display;
-
+import java.util.Arrays;
 import java.util.Random;
+
 
 public class BoardFactory {
     private Display display;
     private Input input;
     private Random random;
     private Ship ship;
+    private InputController inputController;
 
-    public BoardFactory(Display display, Input input, Random random) {
+    public BoardFactory(Display display, Input input, Random random, InputController inputController) {
         this.display = display;
         this.input = input;
         this.random = random;
+        this.inputController = inputController;
     }
 
-//    public void choosePlacement(Player player, Board playerBoard, Board placementBoard){
-//        display.printMessage(String.format("%s, your turn!"));
-//        display.printPlacementMode();
-//        int placementMode = input.getValue();
-//        switch (placementMode){
-//            case 1: {manualPlacement(player, playerBoard);
-//                break;}
-////            case 2: {randomPlacement(player, playerBoard, placementBoard);
-////                break;}
-//        }
-//
-//    }
+    public void choosePlacement(Player player, Board playerBoard) {
+        display.printPlacementMode();
+        int placementMode = input.getValue();
+        switch (placementMode){
+            case 1: { manualPlacement(player, playerBoard);
+                break;
+            }
+            case 2: { randomPlacement(player, playerBoard);
+                break;
+            }
+        }
+
+    }
 
     public void manualPlacement(Player player, Board playerBoard) {
         display.printBlueMessages("\nYou chose manual ship placement. Place your ships.\n");
+        display.showBoard(playerBoard.getOcean());
         for (Ship currentShip : player.getShipList()) {
             boolean isFirstTry = true;
-            display.showBoard(playerBoard.getOcean());
             display.showShips();
             display.shipSizeVisualisation();
             do {
@@ -57,7 +60,35 @@ public class BoardFactory {
                 isFirstTry = false;
             } while (!(playerBoard.isPlacementOk(currentShip, playerBoard.getOcean())));
             currentShip.placeShip(playerBoard.getOcean());
+            display.showBoard(playerBoard.getOcean());
             //currentShip.placeShipOnPlacementBoard(playerBoard.getOcean());
         }
     }
+
+    public void randomPlacement(Player player, Board playerBoard) {
+
+        display.printBlueMessages("\nYou chose random ship placement.\n");
+        for (Ship currentShip : player.getShipList()) {
+            boolean isFirstTry = true;
+            do {
+                currentShip.setShipStartY(new Random().nextInt(playerBoard.getSideLength()));
+                currentShip.setShipStartX(new Random().nextInt(playerBoard.getSideLength()));
+
+                String[] directions = {"H", "V"};
+                String direction = directions[new Random().nextInt(2)];
+                int orientationNumber = (Arrays.asList(directions)).indexOf(direction.toUpperCase());
+                currentShip.setShipOrientation(orientationNumber == 0 ? Ship.ShipOrientation.HORIZONTAL : Ship.ShipOrientation.VERTICAL);
+                currentShip.setSquaresList();
+                isFirstTry = false;
+            } while (!(playerBoard.isPlacementOk(currentShip, playerBoard.getOcean())));
+            currentShip.placeShip(playerBoard.getOcean());
+            inputController.pause(2000);
+            display.showBoard(playerBoard.getOcean());
+            display.showShips();
+            display.shipSizeVisualisation();
+
+        }
+    }
+
+
 }

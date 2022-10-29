@@ -76,11 +76,6 @@ public class Display {
         System.out.println(Colors.CYAN_BOLD + message);
     }
 
-
-    public void endTurn() {
-        System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to end Your turn");
-    }
-
     public void clickToContinue() {
         System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to continue\n");
     }
@@ -121,39 +116,39 @@ public class Display {
     }
 
     public void showShips() {
-        System.out.println("\n  __|__ |___| |\\" + "\t\t\t   __[]__" + "\t\t\t    _~ " +"\t\t\t\t    . ");
-        System.out.println("  |___| |___| |o \\" + "\t\t\t _|_o_o_o\\__" + "\t\t _~ )_)_~" +"\t\t\t   /|\\");
-        System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__"+ "\t\t )_))_))_)" +"\t\t\t  /_|_\\");
-        System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /"+ "\t\t _!__!__!_" +"\t\t    ____|____\t\t\t__/\\__");
-        System.out.println("\\   o * o * * o o  /" + "\t\t \\......../"+ "\t\t\t \\_______/" +"\t\t    \\_______/\t\t\t\\____/");
+        System.out.println("\n  __|__ |___| |\\" + "\t\t\t   __[]__" + "\t\t\t    _~ " + "\t\t\t\t    . ");
+        System.out.println("  |___| |___| |o \\" + "\t\t\t _|_o_o_o\\__" + "\t\t _~ )_)_~" + "\t\t\t   /|\\");
+        System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__" + "\t\t )_))_))_)" + "\t\t\t  /_|_\\");
+        System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /" + "\t\t _!__!__!_" + "\t\t    ____|____\t\t\t__/\\__");
+        System.out.println("\\   o * o * * o o  /" + "\t\t \\......../" + "\t\t\t \\_______/" + "\t\t    \\_______/\t\t\t\\____/");
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-    public void showBoard(Square[][] ocean){
+    public void showBoard(Square[][] ocean) {
 
         String tableRowStart = "  +-----";
         String tableRow = "+-----";
         String tableRowEnd = "+-----+";
         int count = 1;
 
-        for(int i = 0; i < ocean.length; ++i)
-            System.out.format(Colors.ANSI_BLACK + "    %2s", (char)(i + 'A'));
+        for (int i = 0; i < ocean.length; ++i)
+            System.out.format(Colors.ANSI_BLACK + "    %2s", (char) (i + 'A'));
         System.out.println();
 
-        for(int i = 0; i < ocean.length ; i++) {
+        for (int i = 0; i < ocean.length; i++) {
             System.out.print(Colors.ANSI_BLACK + tableRowStart);
             System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
             System.out.println(Colors.ANSI_BLACK + tableRowEnd);
             System.out.print(i + 1);
 
-            for(int j = 0; j < ocean[i].length;j++) {
+            for (int j = 0; j < ocean[i].length; j++) {
                 if (i < 9) {
                     System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
                 } else {
                     System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
                 }
 
-                if(j == ocean.length - 1) {
+                if (j == ocean.length - 1) {
                     if (i < 9) {
                         System.out.print(Colors.ANSI_BLACK + " |");
                     } else {
@@ -162,7 +157,7 @@ public class Display {
                 }
             }
             System.out.println();
-            if(i == ocean.length - 1) {
+            if (i == ocean.length - 1) {
                 System.out.print(Colors.ANSI_BLACK + tableRowStart);
                 System.out.print(Colors.ANSI_BLACK + tableRow.repeat(ocean.length - 2));
                 System.out.println(Colors.ANSI_BLACK + tableRowEnd);
@@ -171,15 +166,7 @@ public class Display {
     }
 
     public void printPlacementMode() {
-        System.out.println("If you want to place your ships yourself please select 1.");
-        System.out.println("If you want to place your ships automatically, please select 2.");
+        System.out.println(Colors.CYAN_BOLD + "\nIf you want to place your ships manually please select 1.");
+        System.out.println(Colors.CYAN_BOLD + "If you want to place your ships automatically, please select 2.\n");
     }
-
-    public void printWrongValueAlert(String valueRange){
-        System.out.println("Please provide correct value in " + valueRange + ".");
-    }
-    public void printMessage(String message) {
-        System.out.println(message);
-    }
-
 }

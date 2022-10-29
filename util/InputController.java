@@ -54,4 +54,12 @@ public class InputController {
         return charToConvert - 'a' + 1;
     }
 
+    public void pause(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            System.err.format("IOException: %s%n", e);
+        }
+    }
+
 }

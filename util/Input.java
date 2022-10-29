@@ -2,6 +2,7 @@ package util;
 
 import board.Square;
 import model.Ship;
+import view.Colors;
 import view.Display;
 
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class Input {
         System.out.println("Player 2, please enter Your nickname: ");
         String secondPlayerName = userInput.nextLine();
 
-        System.out.println("\nHello " + firstPlayerName + " & " + secondPlayerName + ", welcome to the Battleship Game!\n");
+        System.out.println("\nHello " + Colors.CYAN_BOLD + firstPlayerName + Colors.ANSI_BLACK + " & " + Colors.CYAN_BOLD + secondPlayerName + Colors.ANSI_BLACK + ", welcome to the Battleship Game!\n");
 
     }
 
@@ -74,17 +75,16 @@ public class Input {
         return false;
     }
 
-//    public int getValue() {
-//        while (true) {
-//            System.out.println("Choose placement 1 for manual and 2 for random: ");
-//            Scanner placement = new Scanner(in);
-//            String userInput = placement.nextLine();
-//            if (checkInput(userInput)) {
-//                return Integer.parseInt(userInput);
-//            }
-//            System.out.println("You need to provide a number between 1 and 2!");
-//        }
-//    }
+    public int getValue() {
+        while (true) {
+            Scanner placement = new Scanner(in);
+            String userInput = placement.nextLine();
+            if (Integer.parseInt(userInput) == 1 || Integer.parseInt(userInput) == 2 ) {
+                return Integer.parseInt(userInput);
+            }
+            System.out.println("You need to provide a number between 1 and 2!");
+        }
+    }
 
     public String[] chooseShipPlace() {
         while (true) {

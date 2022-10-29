@@ -12,7 +12,7 @@ public class Main {
         Input input = new Input(inputController);
         Display display = new Display(input);
         Random random = new Random();
-        BoardFactory boardFactory = new BoardFactory(display, input, random);
+        BoardFactory boardFactory = new BoardFactory(display, input, random, inputController);
         Battleship battleship = new Battleship(display, input, boardFactory);
         battleship.gameMenu();
     }
