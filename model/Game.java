@@ -34,7 +34,7 @@ public class Game {
         INPUT.clickToContinue();
         player2Board = new Board(oceanSize);
         player2Board.initOcean();
-        BOARDFACTORY.choosePlacement(player, player1Board);
+        BOARDFACTORY.choosePlacement(player, player2Board);
 
     }
 }
