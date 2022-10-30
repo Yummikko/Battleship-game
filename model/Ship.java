@@ -51,32 +51,6 @@ public class Ship {
         }
     }
 
-//    public void placeShipOnPlacementBoard(Square[][] ocean) {
-//        for (int i = 0; i < this.shipType.getShipLength(); i++) {
-//            switch (this.shipOrientation) {
-//                case HORIZONTAL: {
-//                    for (int j = -1; j < 2; j++) {
-//                        for (int k = -1; k < 2; k++)
-//                            if ((this.shipStartY + j) >= 0 && (this.shipStartY + j) < ocean.length && this.shipStartX + i + k >= 0 && this.shipStartX + i + k < ocean.length) {
-//                                ocean[this.shipStartY + j][this.shipStartX + i + k].setSquareStatus(SquareStatus.SHIP);
-//                            }
-//                    }
-//                    break;
-//                }
-//                case VERTICAL: {
-//                    for (int j = -1; j < 2; j++) {
-//                        for (int k = -1; k < 2; k++)
-//                            if ((this.shipStartY + i + j) >= 0 && (this.shipStartY + i + j) < ocean.length && this.shipStartX + k >= 0 && this.shipStartX + k < ocean.length) {
-//                                ocean[this.shipStartY + i + j][this.shipStartX + k].setSquareStatus(SquareStatus.SHIP);
-//                            }
-//                    }
-//                    break;
-//
-//
-//                }
-//            }
-//        }
-//    }
 
     public ArrayList<Square> getSquaresList() {
         return squaresList;
@@ -146,4 +120,17 @@ public class Ship {
     public void setShipStartY(int shipStartY) {
         this.shipStartY = shipStartY;
     }
+
+    public boolean isSunk() {
+        if (squaresList != null) {
+            for (Square s : squaresList) {
+                if (s.getSquareStatus() == SquareStatus.SHIP) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
 }

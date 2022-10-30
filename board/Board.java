@@ -36,18 +36,55 @@ public class Board {
         }
     }
 
-    public boolean isPlacementOk (Ship ship, Square[][] ocean) {
+    public boolean isPlacementOk (Ship ship) {
         ArrayList<Square> shipsElements = ship.getSquaresList();
         for (Square shipElement : shipsElements){
-            if (shipElement.getX() < 0 ||  shipElement.getY() < 0 || shipElement.getX() >= ocean.length ||
-                    shipElement.getY() >= ocean.length)
+            if (shipElement.getX() < 0 ||  shipElement.getY() < 0 || shipElement.getX() >= ocean.length - 1 ||
+                    shipElement.getY() >= ocean.length - 1)
             {
                 return false;
             }
-            if ((ocean[shipElement.getY()][shipElement.getX()]).getSquareStatus() != SquareStatus.EMPTY){
+            if (ocean[shipElement.getX()][shipElement.getY()].getSquareStatus() != SquareStatus.EMPTY) {
                 return false;
             }
         }
+
         return true;
     };
+
+    public Square getSquareByCoordinates(Integer[] coordinates) {
+        int x = coordinates[0];
+        int y = coordinates[1];
+
+        return ocean[y][x];
+    }
+
+    public void changeSquareStatus(SquareStatus newStatus, Square square) {
+        for (int i = 0; i < ocean.length; i++) {
+            for (int j = 0; j <ocean[i].length; j++) {
+                if (ocean[j][i].getX() == square.getX() && ocean[j][i].getY() == square.getY()) {
+                    ocean[j][i].setSquareStatus(newStatus);
+                }
+            }
+        }
+    }
+
+    public void handleShot(Square shot) {
+        for (int i = 0; i < ocean.length; i++) {
+            for (int j = 0; j <ocean[i].length; j++) {
+                if (ocean[j][i].getX() == shot.getX() && ocean[j][i].getY() == shot.getY()) {
+                    if (ocean[j][i].getSquareStatus().getCharacter() == "S") {
+                        changeSquareStatus(SquareStatus.HIT, ocean[j][i]);
+                    } else {
+                        changeSquareStatus(SquareStatus.MISSED, ocean[j][i]);
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean isAlive() {
+        return true;
+    }
+
 }

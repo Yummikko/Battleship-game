@@ -2,12 +2,22 @@ package model;
 
 import board.Board;
 import board.BoardFactory;
+import board.Square;
+import board.SquareStatus;
 import util.Input;
 import view.Display;
 
+import java.util.Arrays;
+
 public class Game {
+    private Player player1;
     private Board player1Board;
+    private Player player2;
     private Board player2Board;
+    private Player currentPlayer;
+    private Player currentEnemy;
+    private Board currentBoard;
+    private Board enemyBoard;
     private final Display DISPLAY;
     private final Input INPUT;
     private final BoardFactory BOARDFACTORY;
@@ -23,18 +33,59 @@ public class Game {
         INPUT.clickToContinue();
     }
 
+
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
-        Player player = new Player();
+        player1 = new Player();
+        player2 = new Player();
         player1Board = new Board(oceanSize);
         player1Board.initOcean();
-        BOARDFACTORY.choosePlacement(player, player1Board);
+        BOARDFACTORY.choosePlacement(player1, player1Board);
         endTurn();
         DISPLAY.waitingScreen();
         INPUT.clickToContinue();
         player2Board = new Board(oceanSize);
         player2Board.initOcean();
-        BOARDFACTORY.choosePlacement(player, player2Board);
-
+        BOARDFACTORY.choosePlacement(player2, player2Board);
+        currentPlayer = player1;
+        currentBoard = player1Board;
+        currentEnemy = player2;
+        enemyBoard = player2Board;
+        DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        while (player1Board.isAlive() && player2Board.isAlive()) {
+            playRound();
+            endTurn();
+            changePlayer();
+        }
     }
+
+    private void playRound() {
+        DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        Square enemySquare = getEnemySquareByCoordinates(INPUT.chooseShootPlace());
+        enemyBoard.handleShot(enemySquare);
+    }
+
+    private Square getEnemySquareByCoordinates(Integer[] coordinates) {
+        System.out.println(Arrays.toString(coordinates));
+        if (currentEnemy == player1) {
+            return player2Board.getSquareByCoordinates(coordinates);
+        } else {
+            return player1Board.getSquareByCoordinates(coordinates);
+        }
+    }
+
+    private void changePlayer() {
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+            currentBoard = player2Board;
+            enemyBoard = player1Board;
+            currentEnemy = player1;
+        } else {
+            currentPlayer = player1;
+            currentEnemy = player2;
+            currentBoard = player1Board;
+            enemyBoard = player2Board;
+        }
+    }
+
 }

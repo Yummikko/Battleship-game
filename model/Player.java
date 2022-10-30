@@ -1,5 +1,9 @@
 package model;
 
+import board.Board;
+import board.Square;
+import board.SquareStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,4 +32,15 @@ public class Player {
     public void setShipList(List<Ship> shipList) {
         this.shipList = shipList;
     }
+
+
+    public boolean isAlive() {
+        if (shipList != null) {
+            for (Ship ship : shipList) {
+                if (!ship.isSunk()) return true;
+            }
+        }
+        return false;
+    }
+
 }
