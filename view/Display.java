@@ -144,11 +144,24 @@ public class Display {
             for (int j = 0; j < ocean[i].length; j++) {
                 if (i < 9) {
                     if (!isFighting) {
-
+                        System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
+                    } else {
+                        if (ocean[i][j].getSquareStatus().getCharacter() == "H" || ocean[i][j].getSquareStatus().getCharacter() == "M") {
+                            System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
+                        } else {
+                            System.out.format(Colors.ANSI_BLACK + " |  %2s", " ");
+                        }
                     }
-                    System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
                 } else {
-                    System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
+                    if (!isFighting) {
+                        System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
+                    } else {
+                        if (ocean[i][j].getSquareStatus().getCharacter() == "H" || ocean[i][j].getSquareStatus().getCharacter() == "M") {
+                            System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
+                        } else {
+                            System.out.format(Colors.ANSI_BLACK + "| %2s  ", " ");
+                        }
+                    }
                 }
 
                 if (j == ocean.length - 1) {

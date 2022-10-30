@@ -33,26 +33,6 @@ public class Player {
         this.shipList = shipList;
     }
 
-    public SquareStatus getShotStatus(Square shot) {
-        SquareStatus st = SquareStatus.MISSED;
-        if (shipList != null) {
-            for (Ship ship : shipList) {
-                st = ship.getShotStatus(shot);
-            }
-        }
-        return st;
-    }
-
-    public void handleShot(Square shot) {
-        if (shipList != null) {
-            for (Ship ship : shipList) {
-                ship.setShot(shot);
-                if (ship.isSunk()) {
-                    ship.setSunk();
-                }
-            }
-        }
-    }
 
     public boolean isAlive() {
         if (shipList != null) {

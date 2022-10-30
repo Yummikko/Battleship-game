@@ -36,37 +36,55 @@ public class Board {
         }
     }
 
-    public boolean isPlacementOk (Ship ship, Square[][] ocean) {
+    public boolean isPlacementOk (Ship ship) {
         ArrayList<Square> shipsElements = ship.getSquaresList();
         for (Square shipElement : shipsElements){
-            if (shipElement.getX() < 0 ||  shipElement.getY() < 0 || shipElement.getX() >= ocean.length ||
-                    shipElement.getY() >= ocean.length)
+            if (shipElement.getX() < 0 ||  shipElement.getY() < 0 || shipElement.getX() >= ocean.length - 1 ||
+                    shipElement.getY() >= ocean.length - 1)
             {
                 return false;
             }
-            if ((ocean[shipElement.getY()][shipElement.getX()]).getSquareStatus() != SquareStatus.EMPTY){
+            if (ocean[shipElement.getX()][shipElement.getY()].getSquareStatus() != SquareStatus.EMPTY) {
                 return false;
             }
         }
+
         return true;
     };
 
-    public void handleShotInBoard(Square shotSquare, Ship ship) {
-        if (board[shotSquare.getY()][shotSquare.getX()].getSquareStatus() == SquareStatus.EMPTY) {
-            board[shotSquare.getY()][shotSquare.getX()].setSquareStatus(SquareStatus.MISSED);
-        } else if (board[shotSquare.getY()][shotSquare.getX()].getSquareStatus() == SquareStatus.SHIP) {
-            board[shotSquare.getY()][shotSquare.getX()].setSquareStatus(SquareStatus.HIT);
-        }
+    public Square getSquareByCoordinates(Integer[] coordinates) {
+        int x = coordinates[0];
+        int y = coordinates[1];
 
-        if (ship != null && ship.isSunk())
-        {
-            handleSunk(ship);
+        return ocean[y][x];
+    }
+
+    public void changeSquareStatus(SquareStatus newStatus, Square square) {
+        for (int i = 0; i < ocean.length; i++) {
+            for (int j = 0; j <ocean[i].length; j++) {
+                if (ocean[j][i].getX() == square.getX() && ocean[j][i].getY() == square.getY()) {
+                    ocean[j][i].setSquareStatus(newStatus);
+                }
+            }
         }
     }
 
-    public void handleSunk(Ship sunkShip) {
-        for (Square square : sunkShip.getSquaresList()) {
-            board[square.getY()][square.getX()].setSquareStatus(SquareStatus.SUNK);
+    public void handleShot(Square shot) {
+        for (int i = 0; i < ocean.length; i++) {
+            for (int j = 0; j <ocean[i].length; j++) {
+                if (ocean[j][i].getX() == shot.getX() && ocean[j][i].getY() == shot.getY()) {
+                    if (ocean[j][i].getSquareStatus().getCharacter() == "S") {
+                        changeSquareStatus(SquareStatus.HIT, ocean[j][i]);
+                    } else {
+                        changeSquareStatus(SquareStatus.MISSED, ocean[j][i]);
+                    }
+                }
+            }
         }
     }
+
+    public boolean isAlive() {
+        return true;
+    }
+
 }

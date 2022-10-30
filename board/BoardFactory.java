@@ -39,7 +39,7 @@ public class BoardFactory {
 
     public void manualPlacement(Player player, Board playerBoard) {
         display.printBlueMessages("\nYou chose manual ship placement. Please place your ships.\n");
-        display.showBoard(playerBoard.getOcean());
+        display.showBoard(playerBoard.getOcean(), false);
         for (Ship currentShip : player.getShipList()) {
             boolean isFirstTry = true;
             display.showShips();
@@ -58,9 +58,9 @@ public class BoardFactory {
                 currentShip.setShipOrientation(orientation == 0 ? Ship.ShipOrientation.HORIZONTAL : Ship.ShipOrientation.VERTICAL);
                 currentShip.setSquaresList();
                 isFirstTry = false;
-            } while (!(playerBoard.isPlacementOk(currentShip, playerBoard.getOcean())));
+            } while (!(playerBoard.isPlacementOk(currentShip)));
             currentShip.placeShip(playerBoard.getOcean());
-            display.showBoard(playerBoard.getOcean());
+            display.showBoard(playerBoard.getOcean(), false);
             //currentShip.placeShipOnPlacementBoard(playerBoard.getOcean());
         }
     }
@@ -80,10 +80,10 @@ public class BoardFactory {
                 currentShip.setShipOrientation(orientationNumber == 0 ? Ship.ShipOrientation.HORIZONTAL : Ship.ShipOrientation.VERTICAL);
                 currentShip.setSquaresList();
                 isFirstTry = false;
-            } while (!(playerBoard.isPlacementOk(currentShip, playerBoard.getOcean())));
+            } while (!(playerBoard.isPlacementOk(currentShip)));
             currentShip.placeShip(playerBoard.getOcean());
-            inputController.pause(2000);
-            display.showBoard(playerBoard.getOcean());
+            //inputController.pause(1000);
+            display.showBoard(playerBoard.getOcean(), false);
             display.showShips();
             display.shipSizeVisualisation();
 

@@ -127,8 +127,21 @@ public class Input {
         return 0;
     }
 
-    public String[] chooseShootPlace() {
+    public Integer[] chooseShootPlace() {
+        String[] shootCoordinates = getShootCoordinates();
+
+        String shootChar = shootCoordinates[0];
+        String shootNum = shootCoordinates[1];
+
+        Integer convertedChar = inputController.convertLetterToNumber(shootChar);
+        Integer convertedNumber = Integer.parseInt(shootNum);
+
+        return new Integer[]{convertedChar - 1, convertedNumber - 1};
+    }
+
+    private String[] getShootCoordinates() {
         while (true) {
+            System.out.println("Please provide shoot coordinates");
             Scanner from = new Scanner(in);
             String shootPlace = from.nextLine();
             String[] splittedInput = inputController.splitString(shootPlace);
