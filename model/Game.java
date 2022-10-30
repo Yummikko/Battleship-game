@@ -23,6 +23,7 @@ public class Game {
         INPUT.clickToContinue();
     }
 
+
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
         Player player = new Player();
@@ -35,6 +36,10 @@ public class Game {
         player2Board = new Board(oceanSize);
         player2Board.initOcean();
         BOARDFACTORY.choosePlacement(player, player2Board);
+
+    }
+
+    public void playRound() {
 
     }
 }

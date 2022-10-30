@@ -95,7 +95,7 @@ public class Input {
                 if (inputController.checkNumber(splittedInput[1])) {
                     return splittedInput;
                 } else {
-                    System.out.println("You need to provide a number between 10 and ocen size!");
+                    System.out.println("You need to provide a number between 10 and ocean size!");
                 }
             }
         }
@@ -125,5 +125,20 @@ public class Input {
             System.out.println("Wrong row number!");
         }
         return 0;
+    }
+
+    public String[] chooseShootPlace() {
+        while (true) {
+            Scanner from = new Scanner(in);
+            String shootPlace = from.nextLine();
+            String[] splittedInput = inputController.splitString(shootPlace);
+            if (inputController.checkLetter(splittedInput[0])) {
+                if (inputController.checkNumber(splittedInput[1])) {
+                    return splittedInput;
+                } else {
+                    System.out.println("You need to provide a number between 10 and ocean size!");
+                }
+            }
+        }
     }
 }

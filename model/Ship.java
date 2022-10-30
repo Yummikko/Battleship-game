@@ -146,4 +146,46 @@ public class Ship {
     public void setShipStartY(int shipStartY) {
         this.shipStartY = shipStartY;
     }
+
+    public boolean isSunk() {
+        if (squaresList != null) {
+            for (Square s : squaresList) {
+                if (s.getSquareStatus() == SquareStatus.SHIP) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void setShot(Square square) {
+        if (squaresList != null) {
+            for (Square s : squaresList) {
+                if (s.getY() == square.getY() && s.getX() == square.getX()) {
+                    s.setSquareStatus(SquareStatus.HIT);
+                }
+            }
+        }
+    }
+
+    public SquareStatus getShotStatus(Square square) {
+        if (squaresList != null) {
+            for (Square s : squaresList) {
+                if (s.getY() == square.getY() && s.getX() == square.getX()) {
+                    return s.getSquareStatus();
+                }
+            }
+        }
+        return SquareStatus.MISSED;
+    }
+
+    public void setSunk() {
+        if (squaresList != null) {
+            for (Square s : squaresList) {
+                if (s.getSquareStatus() == SquareStatus.HIT) {
+                    s.setSquareStatus(SquareStatus.SUNK);
+                }
+            }
+        }
+    }
 }

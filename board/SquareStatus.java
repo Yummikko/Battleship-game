@@ -4,7 +4,8 @@ public enum SquareStatus {
     EMPTY (" "),
     SHIP ("S"),
     HIT ("H"),
-    MISSED ("M");
+    MISSED ("M"),
+    SUNK("X");
 
     private final String CHARACTER;
 
@@ -15,4 +16,6 @@ public enum SquareStatus {
     public String getCharacter() {
         return CHARACTER;
     }
+
+
 }

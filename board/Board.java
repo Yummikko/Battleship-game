@@ -50,4 +50,23 @@ public class Board {
         }
         return true;
     };
+
+    public void handleShotInBoard(Square shotSquare, Ship ship) {
+        if (board[shotSquare.getY()][shotSquare.getX()].getSquareStatus() == SquareStatus.EMPTY) {
+            board[shotSquare.getY()][shotSquare.getX()].setSquareStatus(SquareStatus.MISSED);
+        } else if (board[shotSquare.getY()][shotSquare.getX()].getSquareStatus() == SquareStatus.SHIP) {
+            board[shotSquare.getY()][shotSquare.getX()].setSquareStatus(SquareStatus.HIT);
+        }
+
+        if (ship != null && ship.isSunk())
+        {
+            handleSunk(ship);
+        }
+    }
+
+    public void handleSunk(Ship sunkShip) {
+        for (Square square : sunkShip.getSquaresList()) {
+            board[square.getY()][square.getX()].setSquareStatus(SquareStatus.SUNK);
+        }
+    }
 }

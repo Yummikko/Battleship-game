@@ -124,7 +124,7 @@ public class Display {
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
-    public void showBoard(Square[][] ocean) {
+    public void showBoard(Square[][] ocean, Boolean isFighting) {
 
         String tableRowStart = "  +-----";
         String tableRow = "+-----";
@@ -143,6 +143,9 @@ public class Display {
 
             for (int j = 0; j < ocean[i].length; j++) {
                 if (i < 9) {
+                    if (!isFighting) {
+
+                    }
                     System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
                 } else {
                     System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
