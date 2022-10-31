@@ -9,7 +9,7 @@ public class Battleship {
     Display display;
     Input input;
 
-    BoardFactory boardFactory;
+//    BoardFactory boardFactory;
     private Game game;
     public boolean run;
 

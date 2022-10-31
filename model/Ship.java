@@ -51,7 +51,6 @@ public class Ship {
         }
     }
 
-
     public ArrayList<Square> getSquaresList() {
         return squaresList;
     }
@@ -59,7 +58,6 @@ public class Ship {
     public ArrayList<Square> getPlacementSquaresList() {
         return placementSquaresList;
     }
-
 
     public void setShipOrientation(ShipOrientation shipOrientation) {
         this.shipOrientation = shipOrientation;
@@ -81,8 +79,6 @@ public class Ship {
                 }
             }
         }
-
-
     }
 
     public void setSquaresList(ArrayList<Square> squaresList) {
@@ -120,17 +116,5 @@ public class Ship {
     public void setShipStartY(int shipStartY) {
         this.shipStartY = shipStartY;
     }
-
-    public boolean isSunk() {
-        if (squaresList != null) {
-            for (Square s : squaresList) {
-                if (s.getSquareStatus() == SquareStatus.SHIP) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
 
 }

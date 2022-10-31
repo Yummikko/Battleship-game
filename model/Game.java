@@ -3,7 +3,7 @@ package model;
 import board.Board;
 import board.BoardFactory;
 import board.Square;
-import board.SquareStatus;
+import java.util.Scanner;
 import util.Input;
 import view.Display;
 
@@ -68,7 +68,8 @@ public class Game {
             changePlayer();
         }
         handleEndGame();
-
+        playAgain();
+        cleanScreen();
     }
 
     private void playRound() {
@@ -78,7 +79,6 @@ public class Game {
     }
 
     private Square getEnemySquareByCoordinates(Integer[] coordinates) {
-        System.out.println(Arrays.toString(coordinates));
         if (currentEnemy == player1) {
             return player2Board.getSquareByCoordinates(coordinates);
         } else {
@@ -108,4 +108,14 @@ public class Game {
         }
     }
 
+    private void playAgain() {
+        System.out.print("\nDo you want play again? (Y/N): ");
+        Scanner keyboard = new Scanner(System.in);
+        String replay = keyboard.nextLine();
+        if (replay.equals("Y")) {
+            newGame();
+        } else {
+            System.out.println("Thank you for playing.");
+        }
+    }
 }

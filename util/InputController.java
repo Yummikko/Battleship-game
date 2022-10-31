@@ -23,7 +23,6 @@ public class InputController {
         }
     }
 
-
     public Boolean checkNumber(String userPawn) {
         if (checkIfInteger(userPawn)) {
             return (Integer.parseInt(userPawn) >= 0) && (Integer.parseInt(userPawn) <= 20);
@@ -42,12 +41,10 @@ public class InputController {
                 alpha.append(str.charAt(i));
         }
 
-
         String letters = alpha.toString();
         String numbers = num.toString();
         return new String[]{letters, numbers};
     }
-
 
     public Integer convertLetterToNumber(String letterToConvert) {
         char charToConvert = letterToConvert.charAt(0);
@@ -61,5 +58,4 @@ public class InputController {
             System.err.format("IOException: %s%n", e);
         }
     }
-
 }

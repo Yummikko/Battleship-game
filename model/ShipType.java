@@ -1,7 +1,6 @@
 package model;
 
 
-
 public enum ShipType {
 //    CARRIER(5),
 //    CRUISER(4),
