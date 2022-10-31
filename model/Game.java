@@ -33,6 +33,13 @@ public class Game {
         INPUT.clickToContinue();
     }
 
+    public void cleanScreen() {
+        int screenSize = 50;
+        for (int i = 0; i < screenSize; i++) {
+            System.out.println("\n");
+        }
+    }
+
 
     public void newGame(){
         Integer oceanSize = INPUT.getOceanSize();
@@ -42,21 +49,26 @@ public class Game {
         player1Board.initOcean();
         BOARDFACTORY.choosePlacement(player1, player1Board);
         endTurn();
+        cleanScreen();
         DISPLAY.waitingScreen();
         INPUT.clickToContinue();
         player2Board = new Board(oceanSize);
         player2Board.initOcean();
         BOARDFACTORY.choosePlacement(player2, player2Board);
+        cleanScreen();
         currentPlayer = player1;
         currentBoard = player1Board;
+        cleanScreen();
         currentEnemy = player2;
         enemyBoard = player2Board;
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
-        while (player1Board.isAlive() && player2Board.isAlive()) {
+        while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
             playRound();
             endTurn();
             changePlayer();
         }
+        handleEndGame();
+
     }
 
     private void playRound() {
@@ -85,6 +97,14 @@ public class Game {
             currentEnemy = player2;
             currentBoard = player1Board;
             enemyBoard = player2Board;
+        }
+    }
+
+    private void handleEndGame() {
+        if (player1Board.checkIfDestroy()) {
+            System.out.println("Player 2 won! ");
+        } else {
+            System.out.println("Player 1 won! ");
         }
     }
 
