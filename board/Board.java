@@ -83,6 +83,18 @@ public class Board {
         }
     }
 
+    public boolean checkIfDestroy() {
+        for (int i = 0; i < ocean.length; i++) {
+            for (int j = 0; j < ocean[i].length; j++) {
+                if (ocean[j][i].getSquareStatus().getCharacter() == "S") {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
     public boolean isAlive() {
         return true;
     }
