@@ -15,8 +15,6 @@ public class Square {
         return X;
     }
 
-
-
     public int getY() {
         return Y;
     }
@@ -29,7 +27,7 @@ public class Square {
         this.squareStatus = squareStatus;
     }
 
-    public String graphic(){
-        return squareStatus.getCharacter();
-    }
+//    public String graphic(){
+//        return squareStatus.getCharacter();
+//    }
 }

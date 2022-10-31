@@ -34,7 +34,6 @@ public class BoardFactory {
                 break;
             }
         }
-
     }
 
     public void manualPlacement(Player player, Board playerBoard) {
@@ -82,13 +81,10 @@ public class BoardFactory {
                 isFirstTry = false;
             } while (!(playerBoard.isPlacementOk(currentShip)));
             currentShip.placeShip(playerBoard.getOcean());
-            //inputController.pause(1000);
+            inputController.pause(1000);
             display.showBoard(playerBoard.getOcean(), false);
             display.showShips();
             display.shipSizeVisualisation();
-
         }
     }
-
-
 }

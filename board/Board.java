@@ -1,7 +1,6 @@
 package board;
 
 import model.Ship;
-import util.Input;
 
 import java.util.ArrayList;
 
@@ -17,9 +16,9 @@ public class Board {
         return ocean;
     }
 
-    public void setOcean(Square[][] ocean) {
-        this.ocean = ocean;
-    }
+//    public void setOcean(Square[][] ocean) {
+//        this.ocean = ocean;
+//    }
 
     public Integer getSideLength() {
         return sideLength;
@@ -91,11 +90,6 @@ public class Board {
                 }
             }
         }
-        return true;
-    }
-
-
-    public boolean isAlive() {
         return true;
     }
 

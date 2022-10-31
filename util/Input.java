@@ -1,13 +1,8 @@
 package util;
 
-import board.Square;
-import model.Ship;
-import view.Colors;
-import view.Display;
 
+import view.Colors;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import static java.lang.System.in;
 
@@ -16,11 +11,9 @@ public class Input {
     private InputController inputController;
     Scanner userInput = new Scanner(in);
 
-
     public Input(InputController inputController) {
         this.inputController = inputController;
     }
-
 
     public void playersName() {
 
@@ -30,7 +23,6 @@ public class Input {
         String secondPlayerName = userInput.nextLine();
 
         System.out.println("\nHello " + Colors.CYAN_BOLD + firstPlayerName + Colors.ANSI_BLACK + " & " + Colors.CYAN_BOLD + secondPlayerName + Colors.ANSI_BLACK + ", welcome to the Battleship Game!\n");
-
     }
 
     public void clickToContinue() {
@@ -113,7 +105,6 @@ public class Input {
 
         return ship;
     }
-
 
     public int getOrientation() {
         String orientation = userInput.next();
