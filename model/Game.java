@@ -49,19 +49,21 @@ public class Game {
         player1Board.initOcean();
         BOARDFACTORY.choosePlacement(player1, player1Board);
         endTurn();
-        cleanScreen();
+        //cleanScreen();
         DISPLAY.waitingScreen();
         INPUT.clickToContinue();
         player2Board = new Board(oceanSize);
         player2Board.initOcean();
         BOARDFACTORY.choosePlacement(player2, player2Board);
-        cleanScreen();
+        endTurn();
+        //cleanScreen();
+        DISPLAY.shootingPhase();
         currentPlayer = player1;
         currentBoard = player1Board;
-        cleanScreen();
+        //cleanScreen();
         currentEnemy = player2;
         enemyBoard = player2Board;
-        DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        //DISPLAY.showBoard(enemyBoard.getOcean(), true);
         while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
             playRound();
             endTurn();
@@ -69,10 +71,17 @@ public class Game {
         }
         handleEndGame();
         playAgain();
-        cleanScreen();
+        //cleanScreen();
     }
 
     private void playRound() {
+        if (currentEnemy == player1) {
+            DISPLAY.printBlueMessages("SECOND PLAYER TURN! \n");
+            System.out.println("First player board: ");
+        } else {
+            DISPLAY.printBlueMessages("FIRST PLAYER TURN! \n");
+            System.out.println("Second player board: ");
+        }
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
         Square enemySquare = getEnemySquareByCoordinates(INPUT.chooseShootPlace());
         enemyBoard.handleShot(enemySquare);

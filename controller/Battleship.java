@@ -8,11 +8,8 @@ import view.Display;
 public class Battleship {
     Display display;
     Input input;
-
-//    BoardFactory boardFactory;
     private Game game;
     public boolean run;
-
 
 
     public Battleship(Display display, Input input, BoardFactory boardFactory) {

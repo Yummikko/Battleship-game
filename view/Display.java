@@ -80,9 +80,6 @@ public class Display {
         System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to continue\n");
     }
 
-    public void printWinnerName() {
-    }
-
 
     public void waitingScreen() {
         System.out.println(Colors.ANSI_BLACK + "                                                ██████╗███████╗ █████╗  █████╗ ███╗  ██╗██████╗ ██╗ ██████╗   ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ ");
