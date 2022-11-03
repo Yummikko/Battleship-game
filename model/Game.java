@@ -5,6 +5,7 @@ import board.BoardFactory;
 import board.Square;
 import java.util.Scanner;
 import util.Input;
+import view.Colors;
 import view.Display;
 
 import java.util.Arrays;
@@ -77,10 +78,10 @@ public class Game {
     private void playRound() {
         if (currentEnemy == player1) {
             DISPLAY.printBlueMessages("SECOND PLAYER TURN! \n");
-            System.out.println("First player board: ");
+            DISPLAY.printBlackMessages("First player board: ");
         } else {
             DISPLAY.printBlueMessages("FIRST PLAYER TURN! \n");
-            System.out.println("Second player board: ");
+            DISPLAY.printBlackMessages("Second player board: ");
         }
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
         Square enemySquare = getEnemySquareByCoordinates(INPUT.chooseShootPlace());
@@ -111,20 +112,20 @@ public class Game {
 
     private void handleEndGame() {
         if (player1Board.checkIfDestroy()) {
-            System.out.println("Player 2 won! ");
+            DISPLAY.printBlueMessages("Player 2 won! ");
         } else {
-            System.out.println("Player 1 won! ");
+            DISPLAY.printBlueMessages("Player 1 won! ");
         }
     }
 
     private void playAgain() {
-        System.out.print("\nDo you want play again? (Y/N): ");
+        DISPLAY.printBlueMessages("\nDo you want play again? (Y/N): ");
         Scanner keyboard = new Scanner(System.in);
         String replay = keyboard.nextLine();
         if (replay.equals("Y")) {
             newGame();
         } else {
-            System.out.println("Thank you for playing.");
+            DISPLAY.printBlueMessages("Thank you for playing.");
         }
     }
 }

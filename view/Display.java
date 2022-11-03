@@ -76,6 +76,10 @@ public class Display {
         System.out.println(Colors.CYAN_BOLD + message);
     }
 
+    public void printBlackMessages(String message) {
+        System.out.println(Colors.ANSI_BLACK + message);
+    }
+
     public void clickToContinue() {
         System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to continue\n");
     }
