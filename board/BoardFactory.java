@@ -60,7 +60,6 @@ public class BoardFactory {
             } while (!(playerBoard.isPlacementOk(currentShip)));
             currentShip.placeShip(playerBoard.getOcean());
             display.showBoard(playerBoard.getOcean(), false);
-            //currentShip.placeShipOnPlacementBoard(playerBoard.getOcean());
         }
     }
 

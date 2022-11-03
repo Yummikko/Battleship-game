@@ -1,6 +1,8 @@
 package board;
 
 import model.Ship;
+import view.Colors;
+import view.Display;
 
 import java.util.ArrayList;
 
@@ -15,10 +17,6 @@ public class Board {
     public Square[][] getOcean() {
         return ocean;
     }
-
-//    public void setOcean(Square[][] ocean) {
-//        this.ocean = ocean;
-//    }
 
     public Integer getSideLength() {
         return sideLength;
@@ -74,8 +72,10 @@ public class Board {
                 if (ocean[j][i].getX() == shot.getX() && ocean[j][i].getY() == shot.getY()) {
                     if (ocean[j][i].getSquareStatus().getCharacter() == "S") {
                         changeSquareStatus(SquareStatus.HIT, ocean[j][i]);
+                        System.out.println(Colors.CYAN_BOLD + "\n\nYou hit Your enemy ship! ");
                     } else {
                         changeSquareStatus(SquareStatus.MISSED, ocean[j][i]);
+                        System.out.println(Colors.ANSI_RED + "\n\nYou missed! ");
                     }
                 }
             }

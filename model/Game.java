@@ -64,7 +64,6 @@ public class Game {
         //cleanScreen();
         currentEnemy = player2;
         enemyBoard = player2Board;
-        //DISPLAY.showBoard(enemyBoard.getOcean(), true);
         while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
             playRound();
             endTurn();
@@ -86,6 +85,7 @@ public class Game {
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
         Square enemySquare = getEnemySquareByCoordinates(INPUT.chooseShootPlace());
         enemyBoard.handleShot(enemySquare);
+        DISPLAY.showBoard(enemyBoard.getOcean(), true);
     }
 
     private Square getEnemySquareByCoordinates(Integer[] coordinates) {

@@ -22,14 +22,6 @@ public class Ship {
         this.placementSquaresList = new ArrayList<>();
     }
 
-    public Integer getX() {
-        return shipStartX;
-    }
-
-    public Integer getY() {
-        return shipStartY;
-    }
-
 
     public enum ShipOrientation {
         VERTICAL, HORIZONTAL
@@ -55,10 +47,6 @@ public class Ship {
         return squaresList;
     }
 
-    public ArrayList<Square> getPlacementSquaresList() {
-        return placementSquaresList;
-    }
-
     public void setShipOrientation(ShipOrientation shipOrientation) {
         this.shipOrientation = shipOrientation;
     }
@@ -81,36 +69,8 @@ public class Ship {
         }
     }
 
-    public void setSquaresList(ArrayList<Square> squaresList) {
-        this.squaresList = squaresList;
-    }
-
-    public void setPlacementSquaresList(ArrayList<Square> placementSquaresList) {
-        this.placementSquaresList = placementSquaresList;
-    }
-
-    public ShipOrientation getShipOrientation() {
-        return shipOrientation;
-    }
-
-    public ShipType getShipType() {
-        return shipType;
-    }
-
-    public void setShipType(ShipType shipType) {
-        this.shipType = shipType;
-    }
-
-    public int getShipStartX() {
-        return shipStartX;
-    }
-
     public void setShipStartX(int shipStartX) {
         this.shipStartX = shipStartX;
-    }
-
-    public int getShipStartY() {
-        return shipStartY;
     }
 
     public void setShipStartY(int shipStartY) {
