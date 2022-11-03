@@ -2,14 +2,12 @@ package model;
 
 import board.Square;
 import board.SquareStatus;
-
 import java.util.ArrayList;
 
 public class Ship {
 
     ArrayList<Square> squaresList;
     ArrayList<Square> placementSquaresList;
-    ArrayList<ShipType> shipsList;
 
     private ShipOrientation shipOrientation;
     private ShipType shipType;
@@ -31,13 +29,11 @@ public class Ship {
     public void placeShip(Square[][] ocean) {
         for (int i = 0; i < this.shipType.getShipLength(); i++) {
             switch (this.shipOrientation) {
-                case HORIZONTAL: {
+                case HORIZONTAL -> {
                     ocean[this.shipStartY][this.shipStartX + i].setSquareStatus(SquareStatus.SHIP);
-                    break;
                 }
-                case VERTICAL: {
+                case VERTICAL -> {
                     ocean[this.shipStartY + i][this.shipStartX].setSquareStatus(SquareStatus.SHIP);
-                    break;
                 }
             }
         }
@@ -53,17 +49,16 @@ public class Ship {
 
     public void setSquaresList() {
         this.squaresList.clear();
+
         for (int i = 0; i < this.shipType.getShipLength(); i++) {
             switch (this.shipOrientation) {
-                case HORIZONTAL: {
+                case HORIZONTAL -> {
                     this.squaresList.add(
                             new Square(this.shipStartY, this.shipStartX + i, SquareStatus.SHIP));
-                    break;
                 }
-                case VERTICAL: {
+                case VERTICAL -> {
                     this.squaresList.add(
                             new Square(this.shipStartY + i, this.shipStartX, SquareStatus.SHIP));
-                    break;
                 }
             }
         }

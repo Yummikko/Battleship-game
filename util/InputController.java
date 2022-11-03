@@ -6,7 +6,7 @@ public class InputController {
 
     public static Boolean checkIfInteger(String inputToCheck) {
         try {
-            int x = Integer.parseInt(inputToCheck);
+            Integer.parseInt(inputToCheck);
             return true;
         }catch(NumberFormatException e) {
             System.out.println(Colors.ANSI_RED + "Invalid input, You need to provide a number!");

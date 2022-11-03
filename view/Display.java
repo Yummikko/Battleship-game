@@ -1,13 +1,10 @@
 package view;
 
-import board.Board;
 import board.Square;
-import board.SquareStatus;
 import util.Input;
 
 public class Display {
     Input input;
-    private Board board;
 
     public Display(Input input) {
         this.input = input;
@@ -55,9 +52,11 @@ public class Display {
 
     public void showMenu() {
         System.out.println(Colors.CYAN_BOLD + "press: \n" + Colors.ANSI_BLACK +
-                "\t 0 - Play game! \n" +
-                "\t 1 - Print game rules \n" +
-                "\t 2 - Exit game\n");
+                "\t 0 - Player vs player game! \n" +
+                "\t 1 - AI vs AI! \n" +
+                "\t 2 - Player vs AI! \n" +
+                "\t 3 - Print game rules \n" +
+                "\t 4 - Exit game\n");
     }
 
     public void gameRules() {
@@ -86,7 +85,7 @@ public class Display {
 
 
     public void waitingScreen() {
-        System.out.println(Colors.ANSI_BLACK + "                                                ██████╗███████╗ █████╗  █████╗ ███╗  ██╗██████╗ ██╗ ██████╗   ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ ");
+        System.out.println(Colors.ANSI_BLACK + "\n                                                ██████╗███████╗ █████╗  █████╗ ███╗  ██╗██████╗ ██╗ ██████╗   ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ ");
         System.out.println(Colors.ANSI_BLACK + "                                               ██╔════╝██╔════╝██╔══██╗██╔══██╗████╗ ██║██╔══██╗╚█║██╔════╝   ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗");
         System.out.println(Colors.ANSI_BLACK + "                                               ╚█████╗ █████╗  ██║  ╚═╝██║  ██║██╔██╗██║██║  ██║ ╚╝╚█████╗    ██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝");
         System.out.println(Colors.ANSI_BLACK + "                                                ╚═══██╗██╔══╝  ██║  ██╗██║  ██║██║╚████║██║  ██║    ╚═══██╗   ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗");
@@ -103,7 +102,7 @@ public class Display {
     }
 
     public void shootingPhase() {
-        System.out.println(Colors.ANSI_BLACK + "                                                  ██████╗██╗  ██╗ █████╗  █████╗ ████████╗██╗███╗  ██╗ ██████╗   ██████╗ ██╗  ██╗ █████╗  ██████╗███████╗");
+        System.out.println(Colors.ANSI_BLACK + "\n                                                  ██████╗██╗  ██╗ █████╗  █████╗ ████████╗██╗███╗  ██╗ ██████╗   ██████╗ ██╗  ██╗ █████╗  ██████╗███████╗");
         System.out.println(Colors.ANSI_BLACK + "                                                 ██╔════╝██║  ██║██╔══██╗██╔══██╗╚══██╔══╝██║████╗ ██║██╔════╝   ██╔══██╗██║  ██║██╔══██╗██╔════╝██╔════╝");
         System.out.println(Colors.ANSI_BLACK + "                                                 ╚█████╗ ███████║██║  ██║██║  ██║   ██║   ██║██╔██╗██║██║  ██╗   ██████╔╝███████║███████║╚█████╗ █████╗  ");
         System.out.println(Colors.ANSI_BLACK + "                                                  ╚═══██╗██╔══██║██║  ██║██║  ██║   ██║   ██║██║╚████║██║  ╚██╗  ██╔═══╝ ██╔══██║██╔══██║ ╚═══██╗██╔══╝  ");
@@ -130,7 +129,6 @@ public class Display {
         String tableRowStart = "  +-----";
         String tableRow = "+-----";
         String tableRowEnd = "+-----+";
-        int count = 1;
 
         for (int i = 0; i < ocean.length; ++i)
             System.out.format(Colors.ANSI_BLACK + "    %2s", (char) (i + 'A'));

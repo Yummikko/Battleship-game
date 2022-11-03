@@ -5,15 +5,14 @@ import board.BoardFactory;
 import board.Square;
 import java.util.Scanner;
 import util.Input;
-import view.Colors;
+import util.InputController;
 import view.Display;
 
-import java.util.Arrays;
 
 public class Game {
-    private Player player1;
+    private final Player PLAYER1;
     private Board player1Board;
-    private Player player2;
+    private final Player PLAYER2;
     private Board player2Board;
     private Player currentPlayer;
     private Player currentEnemy;
@@ -21,49 +20,37 @@ public class Game {
     private Board enemyBoard;
     private final Display DISPLAY;
     private final Input INPUT;
+    private final InputController INPUT_CONTROLLER;
     private final BoardFactory BOARDFACTORY;
 
-    public Game(Display display, Input input, BoardFactory boardFactory) {
+
+    public Game(Display display, Input input, BoardFactory boardFactory, InputController inputController) {
         this.DISPLAY = display;
         this.INPUT = input;
+        this.INPUT_CONTROLLER = inputController;
         this.BOARDFACTORY = boardFactory;
-    }
-
-    public void endTurn(){
-        DISPLAY.printBlueMessages("\nClick enter to end Your turn.");
-        INPUT.clickToContinue();
-    }
-
-    public void cleanScreen() {
-        int screenSize = 50;
-        for (int i = 0; i < screenSize; i++) {
-            System.out.println("\n");
-        }
+        this.PLAYER1 = new Player();
+        this.PLAYER2 = new Player();
+        this.currentPlayer = PLAYER1;
+        this.currentEnemy = PLAYER2;
     }
 
 
-    public void newGame(){
+
+    public void playerVsPlayer(){
         Integer oceanSize = INPUT.getOceanSize();
-        player1 = new Player();
-        player2 = new Player();
-        player1Board = new Board(oceanSize);
-        player1Board.initOcean();
-        BOARDFACTORY.choosePlacement(player1, player1Board);
+        player1Board = initOcean("player1", oceanSize);
+        BOARDFACTORY.choosePlacementMode(PLAYER1, player1Board);
         endTurn();
-        //cleanScreen();
         DISPLAY.waitingScreen();
         INPUT.clickToContinue();
-        player2Board = new Board(oceanSize);
-        player2Board.initOcean();
-        BOARDFACTORY.choosePlacement(player2, player2Board);
+        player2Board = initOcean("player2", oceanSize);
+        BOARDFACTORY.choosePlacementMode(PLAYER2, player2Board);
         endTurn();
-        //cleanScreen();
         DISPLAY.shootingPhase();
-        currentPlayer = player1;
         currentBoard = player1Board;
-        //cleanScreen();
-        currentEnemy = player2;
         enemyBoard = player2Board;
+        
         while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
             playRound();
             endTurn();
@@ -71,11 +58,69 @@ public class Game {
         }
         handleEndGame();
         playAgain();
-        //cleanScreen();
     }
 
+    
+    private Board initOcean(String player, Integer oceanSize) {
+        switch (player) {
+            case "player1" -> {
+                player1Board = new Board(oceanSize);
+                player1Board.initOcean();
+                return player1Board;
+            }
+            case "player2" -> {
+                player2Board = new Board(oceanSize);
+                player2Board.initOcean();
+                return player2Board;
+            }
+        }
+        return null;
+    }
+
+
+    public void aiVsAi() {
+        Integer oceanSize = INPUT.getRandomOceanSize();
+        player1Board = initOcean("player1", oceanSize);
+        BOARDFACTORY.randomPlacement(PLAYER1, player1Board);
+        DISPLAY.waitingScreen();
+        player2Board = initOcean("player2", oceanSize);
+        BOARDFACTORY.randomPlacement(PLAYER2, player2Board);
+        DISPLAY.shootingPhase();
+        currentBoard = player1Board;
+        enemyBoard = player2Board;
+        while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
+            playAiVsAi();
+            changePlayer();
+        }
+        handleEndGame();
+        playAgain();
+    }
+
+    public void playerVsAi(){
+        Integer oceanSize = INPUT.getOceanSize();
+        player1Board = initOcean("player1", oceanSize);
+        BOARDFACTORY.choosePlacementMode(PLAYER1, player1Board);
+        endTurn();
+        DISPLAY.waitingScreen();
+        INPUT.clickToContinue();
+        player2Board = initOcean("player2", oceanSize);
+        BOARDFACTORY.randomPlacement(PLAYER2, player2Board);
+        DISPLAY.shootingPhase();
+        currentBoard = player1Board;
+        enemyBoard = player2Board;
+
+        while (!player1Board.checkIfDestroy() && !player2Board.checkIfDestroy()) {
+            playPlayerVsAi();
+            endTurn();
+            changePlayer();
+        }
+        handleEndGame();
+        playAgain();
+    }
+
+
     private void playRound() {
-        if (currentEnemy == player1) {
+        if (currentEnemy == PLAYER1) {
             DISPLAY.printBlueMessages("SECOND PLAYER TURN! \n");
             DISPLAY.printBlackMessages("First player board: ");
         } else {
@@ -88,27 +133,72 @@ public class Game {
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
     }
 
+
+    private void playPlayerVsAi() {
+        if (currentEnemy == PLAYER1) {
+            DISPLAY.printBlueMessages("AI TURN! \n");
+            INPUT_CONTROLLER.pause(1000);
+            DISPLAY.printBlackMessages("First player board: ");
+            DISPLAY.showBoard(enemyBoard.getOcean(), true);
+            Square enemySquare = getEnemySquareByCoordinates(INPUT.randomShootPlace(currentBoard));
+            enemyBoard.handleShot(enemySquare);
+            DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        } else {
+            DISPLAY.printBlueMessages("FIRST PLAYER TURN! \n");
+            DISPLAY.printBlackMessages("AI board: ");
+            DISPLAY.showBoard(enemyBoard.getOcean(), true);
+            Square enemySquare = getEnemySquareByCoordinates(INPUT.chooseShootPlace());
+            enemyBoard.handleShot(enemySquare);
+            DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        }
+    }
+
+
     private Square getEnemySquareByCoordinates(Integer[] coordinates) {
-        if (currentEnemy == player1) {
+        if (currentEnemy == PLAYER1) {
             return player2Board.getSquareByCoordinates(coordinates);
         } else {
             return player1Board.getSquareByCoordinates(coordinates);
         }
     }
 
+
+    private void playAiVsAi() {
+        if (currentEnemy == PLAYER1) {
+            DISPLAY.printBlueMessages("SECOND AI TURN! \n");
+            DISPLAY.printBlackMessages("First AI board: ");
+        } else {
+            DISPLAY.printBlueMessages("FIRST AI TURN! \n");
+            DISPLAY.printBlackMessages("Second AI board: ");
+        }
+        DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        Square enemySquare = getEnemySquareByCoordinates(INPUT.randomShootPlace(currentBoard));
+        enemyBoard.handleShot(enemySquare);
+        DISPLAY.showBoard(enemyBoard.getOcean(), true);
+        INPUT_CONTROLLER.pause(1000);
+    }
+
+
     private void changePlayer() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
+        if (currentPlayer == PLAYER1) {
+            currentPlayer = PLAYER2;
             currentBoard = player2Board;
             enemyBoard = player1Board;
-            currentEnemy = player1;
+            currentEnemy = PLAYER1;
         } else {
-            currentPlayer = player1;
-            currentEnemy = player2;
+            currentPlayer = PLAYER1;
+            currentEnemy = PLAYER2;
             currentBoard = player1Board;
             enemyBoard = player2Board;
         }
     }
+
+
+    public void endTurn(){
+        DISPLAY.printBlueMessages("\nClick enter to end Your turn.");
+        INPUT.clickToContinue();
+    }
+
 
     private void handleEndGame() {
         if (player1Board.checkIfDestroy()) {
@@ -118,12 +208,13 @@ public class Game {
         }
     }
 
+
     private void playAgain() {
         DISPLAY.printBlueMessages("\nDo you want play again? (Y/N): ");
         Scanner keyboard = new Scanner(System.in);
         String replay = keyboard.nextLine();
         if (replay.equals("Y")) {
-            newGame();
+            playerVsPlayer();
         } else {
             DISPLAY.printBlueMessages("Thank you for playing.");
         }
