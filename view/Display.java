@@ -1,13 +1,10 @@
 package view;
 
-import board.Board;
 import board.Square;
-import board.SquareStatus;
 import util.Input;
 
 public class Display {
     Input input;
-    private Board board;
 
     public Display(Input input) {
         this.input = input;
@@ -55,14 +52,16 @@ public class Display {
 
     public void showMenu() {
         System.out.println(Colors.CYAN_BOLD + "press: \n" + Colors.ANSI_BLACK +
-                "\t 0 - Play game! \n" +
-                "\t 1 - Print game rules \n" +
-                "\t 2 - Exit game\n");
+                "\t 0 - Player vs player game! \n" +
+                "\t 1 - AI vs AI! \n" +
+                "\t 2 - Player vs AI! \n" +
+                "\t 3 - Print game rules \n" +
+                "\t 4 - Exit game\n");
     }
 
     public void gameRules() {
         System.out.println(Colors.CYAN_BOLD + "Here are some rules of the game: ");
-        System.out.println(Colors.ANSI_BLACK + "1. Each ship must be placed horizontally orvertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
+        System.out.println(Colors.ANSI_BLACK + "1. Each ship must be placed horizontally or vertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
         System.out.println(Colors.ANSI_BLACK + "2. Ships can't touch each other (touching corners are okay)");
         System.out.println(Colors.ANSI_BLACK + "3. You cannot change the position of the ships after the game begins.\n");
     }
@@ -76,16 +75,17 @@ public class Display {
         System.out.println(Colors.CYAN_BOLD + message);
     }
 
+    public void printBlackMessages(String message) {
+        System.out.println(Colors.ANSI_BLACK + message);
+    }
+
     public void clickToContinue() {
         System.out.println(Colors.CYAN_BOLD + "Please click any button on Your keyboard to continue\n");
     }
 
-    public void printWinnerName() {
-    }
-
 
     public void waitingScreen() {
-        System.out.println(Colors.ANSI_BLACK + "                                                ██████╗███████╗ █████╗  █████╗ ███╗  ██╗██████╗ ██╗ ██████╗   ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ ");
+        System.out.println(Colors.ANSI_BLACK + "\n                                                ██████╗███████╗ █████╗  █████╗ ███╗  ██╗██████╗ ██╗ ██████╗   ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗ ");
         System.out.println(Colors.ANSI_BLACK + "                                               ██╔════╝██╔════╝██╔══██╗██╔══██╗████╗ ██║██╔══██╗╚█║██╔════╝   ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗");
         System.out.println(Colors.ANSI_BLACK + "                                               ╚█████╗ █████╗  ██║  ╚═╝██║  ██║██╔██╗██║██║  ██║ ╚╝╚█████╗    ██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝");
         System.out.println(Colors.ANSI_BLACK + "                                                ╚═══██╗██╔══╝  ██║  ██╗██║  ██║██║╚████║██║  ██║    ╚═══██╗   ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗");
@@ -102,7 +102,7 @@ public class Display {
     }
 
     public void shootingPhase() {
-        System.out.println(Colors.ANSI_BLACK + "                                                  ██████╗██╗  ██╗ █████╗  █████╗ ████████╗██╗███╗  ██╗ ██████╗   ██████╗ ██╗  ██╗ █████╗  ██████╗███████╗");
+        System.out.println(Colors.ANSI_BLACK + "\n                                                  ██████╗██╗  ██╗ █████╗  █████╗ ████████╗██╗███╗  ██╗ ██████╗   ██████╗ ██╗  ██╗ █████╗  ██████╗███████╗");
         System.out.println(Colors.ANSI_BLACK + "                                                 ██╔════╝██║  ██║██╔══██╗██╔══██╗╚══██╔══╝██║████╗ ██║██╔════╝   ██╔══██╗██║  ██║██╔══██╗██╔════╝██╔════╝");
         System.out.println(Colors.ANSI_BLACK + "                                                 ╚█████╗ ███████║██║  ██║██║  ██║   ██║   ██║██╔██╗██║██║  ██╗   ██████╔╝███████║███████║╚█████╗ █████╗  ");
         System.out.println(Colors.ANSI_BLACK + "                                                  ╚═══██╗██╔══██║██║  ██║██║  ██║   ██║   ██║██║╚████║██║  ╚██╗  ██╔═══╝ ██╔══██║██╔══██║ ╚═══██╗██╔══╝  ");
@@ -121,7 +121,7 @@ public class Display {
         System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__" + "\t\t )_))_))_)" + "\t\t\t  /_|_\\");
         System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /" + "\t\t _!__!__!_" + "\t\t    ____|____\t\t\t__/\\__");
         System.out.println("\\   o * o * * o o  /" + "\t\t \\......../" + "\t\t\t \\_______/" + "\t\t    \\_______/\t\t\t\\____/");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
     }
 
     public void showBoard(Square[][] ocean, Boolean isFighting) {
@@ -129,7 +129,6 @@ public class Display {
         String tableRowStart = "  +-----";
         String tableRow = "+-----";
         String tableRowEnd = "+-----+";
-        int count = 1;
 
         for (int i = 0; i < ocean.length; ++i)
             System.out.format(Colors.ANSI_BLACK + "    %2s", (char) (i + 'A'));

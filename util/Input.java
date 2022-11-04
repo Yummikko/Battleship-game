@@ -1,8 +1,10 @@
 package util;
 
 
+import board.Board;
 import view.Colors;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 import static java.lang.System.in;
 
@@ -23,6 +25,12 @@ public class Input {
         String secondPlayerName = userInput.nextLine();
 
         System.out.println("\nHello " + Colors.CYAN_BOLD + firstPlayerName + Colors.ANSI_BLACK + " & " + Colors.CYAN_BOLD + secondPlayerName + Colors.ANSI_BLACK + ", welcome to the Battleship Game!\n");
+    }
+
+    public void playerName() {
+        System.out.println("Player 1, please enter Your nickname: ");
+        String playerName = userInput.nextLine();
+        System.out.println("\nHello " + Colors.CYAN_BOLD + playerName + Colors.ANSI_BLACK + ", welcome to the Battleship Game, You will be playing against the computer today!\n");
     }
 
     public void clickToContinue() {
@@ -58,6 +66,11 @@ public class Input {
             }
             System.out.println("You need to provide a number between 10 and 20!");
         }
+    }
+
+    public int getRandomOceanSize() {
+        Integer randomSize = new Random().nextInt(11) + 10;
+        return randomSize;
     }
 
     private Boolean checkInput(String userInput) {
@@ -130,9 +143,18 @@ public class Input {
         return new Integer[]{convertedChar - 1, convertedNumber - 1};
     }
 
+    public Integer[] randomShootPlace(Board playerBoard) {
+
+        Integer shootChar = new Random().nextInt(playerBoard.getSideLength()) + 1;
+        Integer shootNum = new Random().nextInt(playerBoard.getSideLength()) + 1;
+
+        return new Integer[]{shootChar - 1, shootNum - 1};
+    }
+
+
     private String[] getShootCoordinates() {
         while (true) {
-            System.out.println("Please provide shoot coordinates");
+            System.out.println("\nPlease provide shoot coordinates: ");
             Scanner from = new Scanner(in);
             String shootPlace = from.nextLine();
             String[] splittedInput = inputController.splitString(shootPlace);

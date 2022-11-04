@@ -27,7 +27,4 @@ public class Square {
         this.squareStatus = squareStatus;
     }
 
-//    public String graphic(){
-//        return squareStatus.getCharacter();
-//    }
 }

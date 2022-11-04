@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private List<Ship> shipList;
+    private final List<Ship> SHIP_LIST;
 
     public Player() {
-        this.shipList = new ArrayList<>();
+        this.SHIP_LIST = new ArrayList<>();
         createShipList();
     }
 
@@ -18,15 +18,11 @@ public class Player {
     }
 
     public void addShips(Ship ship) {
-        shipList.add(ship);
+        SHIP_LIST.add(ship);
     }
 
     public List<Ship> getShipList() {
-        return shipList;
-    }
-
-    public void setShipList(List<Ship> shipList) {
-        this.shipList = shipList;
+        return SHIP_LIST;
     }
 
 }
