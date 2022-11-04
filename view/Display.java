@@ -61,7 +61,7 @@ public class Display {
 
     public void gameRules() {
         System.out.println(Colors.CYAN_BOLD + "Here are some rules of the game: ");
-        System.out.println(Colors.ANSI_BLACK + "1. Each ship must be placed horizontally orvertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
+        System.out.println(Colors.ANSI_BLACK + "1. Each ship must be placed horizontally or vertically across grid spaces—not diagonally—and the ships can't hang off the grid.");
         System.out.println(Colors.ANSI_BLACK + "2. Ships can't touch each other (touching corners are okay)");
         System.out.println(Colors.ANSI_BLACK + "3. You cannot change the position of the ships after the game begins.\n");
     }
@@ -121,7 +121,7 @@ public class Display {
         System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__" + "\t\t )_))_))_)" + "\t\t\t  /_|_\\");
         System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /" + "\t\t _!__!__!_" + "\t\t    ____|____\t\t\t__/\\__");
         System.out.println("\\   o * o * * o o  /" + "\t\t \\......../" + "\t\t\t \\_______/" + "\t\t    \\_______/\t\t\t\\____/");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
     }
 
     public void showBoard(Square[][] ocean, Boolean isFighting) {

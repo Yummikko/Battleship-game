@@ -9,7 +9,6 @@ import view.Display;
 public class Battleship {
     Display display;
     Input input;
-    InputController inputController;
     private final Game GAME;
     public boolean run;
 

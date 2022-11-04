@@ -121,10 +121,12 @@ public class Game {
 
     private void playRound() {
         if (currentEnemy == PLAYER1) {
-            DISPLAY.printBlueMessages("SECOND PLAYER TURN! \n");
+            DISPLAY.printBlueMessages("SECOND PLAYER TURN!");
+            DISPLAY.printBlueMessages("Aim your missiles and sink the enemy's fleet!\n");
             DISPLAY.printBlackMessages("First player board: ");
         } else {
-            DISPLAY.printBlueMessages("FIRST PLAYER TURN! \n");
+            DISPLAY.printBlueMessages("FIRST PLAYER TURN!");
+            DISPLAY.printBlueMessages("Aim your missiles and sink the enemy's fleet!\n");
             DISPLAY.printBlackMessages("Second player board: ");
         }
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
@@ -175,7 +177,7 @@ public class Game {
         Square enemySquare = getEnemySquareByCoordinates(INPUT.randomShootPlace(currentBoard));
         enemyBoard.handleShot(enemySquare);
         DISPLAY.showBoard(enemyBoard.getOcean(), true);
-        INPUT_CONTROLLER.pause(1000);
+        //INPUT_CONTROLLER.pause(1000);
     }
 
 
