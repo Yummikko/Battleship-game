@@ -42,25 +42,28 @@ public class Board {
             int y = shipElements.get(i).getY();
             if(x == 0){
                 if(y == 0){
-                    if(ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP){
+                    if(ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP || ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP){
                         return false;
                     }
-                    if(ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP){
+                } else {
+                    if(ocean[x][y-1].getSquareStatus()  == SquareStatus.SHIP || ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP ||
+                    ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP){
                         return false;
                     }
-                }else{
-                    if(ocean[x][y-1].getSquareStatus()  == SquareStatus.SHIP){
+                }
+            } else {
+                if(y == 0) {
+                    if(ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP || ocean[x-1][y].getSquareStatus() == SquareStatus.SHIP ||
+                    ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP){
+                        return false;
+                    }
+                } else {
+                    if(ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP || ocean[x-1][y].getSquareStatus() == SquareStatus.SHIP ||
+                    ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP || ocean[x][y-1].getSquareStatus()  == SquareStatus.SHIP){
                         return false;
                     }
                 }
             }
-
-            if(ocean[x-1][y].getSquareStatus() == SquareStatus.SHIP){
-                return false;
-            }
-
-
-
         }
         return true;
     }
