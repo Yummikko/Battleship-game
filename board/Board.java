@@ -1,6 +1,7 @@
 package board;
 
 import model.Ship;
+import model.ShipType;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,35 @@ public class Board {
         }
     }
 
+    public boolean checkNeighbours(ArrayList<Square> shipElements){
+        for (int i = 0; i < shipElements.size(); i++) {
+            int x = shipElements.get(i).getX();
+            int y = shipElements.get(i).getY();
+            if(x == 0){
+                if(y == 0){
+                    if(ocean[x+1][y].getSquareStatus() == SquareStatus.SHIP){
+                        return false;
+                    }
+                    if(ocean[x][y+1].getSquareStatus() == SquareStatus.SHIP){
+                        return false;
+                    }
+                }else{
+                    if(ocean[x][y-1].getSquareStatus()  == SquareStatus.SHIP){
+                        return false;
+                    }
+                }
+            }
+
+            if(ocean[x-1][y].getSquareStatus() == SquareStatus.SHIP){
+                return false;
+            }
+
+
+
+        }
+        return true;
+    }
+
     public boolean isPlacementOk (Ship ship) {
         ArrayList<Square> shipsElements = ship.getSquaresList();
         for (Square shipElement : shipsElements){
@@ -47,8 +77,7 @@ public class Board {
                 return false;
             }
         }
-
-        return true;
+        return checkNeighbours(shipsElements);
     };
 
     public Square getSquareByCoordinates(Integer[] coordinates) {
