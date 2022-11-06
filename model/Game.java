@@ -3,6 +3,8 @@ package model;
 import board.Board;
 import board.BoardFactory;
 import board.Square;
+
+import java.util.Objects;
 import java.util.Scanner;
 import util.Input;
 import util.InputController;

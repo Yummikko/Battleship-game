@@ -4,6 +4,7 @@ package util;
 import board.Board;
 import view.Colors;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import static java.lang.System.in;
@@ -120,14 +121,16 @@ public class Input {
     }
 
     public int getOrientation() {
-        String orientation = userInput.next();
+        String orientation = userInput.next().toUpperCase();
         String[] letterList = {"H", "V"};
-        if ((Arrays.asList(letterList)).contains(orientation.toUpperCase())) {
-            int orientationNumber = (Arrays.asList(letterList)).indexOf(orientation.toUpperCase());
+        List<String> possibleOrientations = Arrays.asList(letterList);
+        if (possibleOrientations.contains(orientation)) {
+            int orientationNumber = possibleOrientations.indexOf(orientation);
             return orientationNumber;
         } else {
             System.out.println("Wrong row number!");
         }
+        // TODO fix bug
         return 0;
     }
 

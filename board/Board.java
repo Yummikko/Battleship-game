@@ -3,6 +3,7 @@ package board;
 import model.Ship;
 import view.Colors;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Board {
     private Square[][] ocean;
@@ -99,9 +100,13 @@ public class Board {
         for (int i = 0; i < ocean.length; i++) {
             for (int j = 0; j <ocean[i].length; j++) {
                 if (ocean[j][i].getX() == shot.getX() && ocean[j][i].getY() == shot.getY()) {
-                    if (ocean[j][i].getSquareStatus().getCharacter() == "S") {
+                    //System.out.println(ocean[j][i].getSquareStatus().getCharacter());
+                    if (Objects.equals(ocean[j][i].getSquareStatus().getCharacter(), "S")) {
                         changeSquareStatus(SquareStatus.HIT, ocean[j][i]);
                         System.out.println(Colors.CYAN_BOLD + "\n\nYou hit Your enemy ship! ");
+                    } else if (Objects.equals(ocean[j][i].getSquareStatus().getCharacter(), "H")
+                    || Objects.equals(ocean[j][i].getSquareStatus().getCharacter(), "M")){
+                        System.out.println(Colors.ANSI_RED + "\n\nYou already shot this place! ");
                     } else {
                         changeSquareStatus(SquareStatus.MISSED, ocean[j][i]);
                         System.out.println(Colors.ANSI_RED + "\n\nYou missed! ");

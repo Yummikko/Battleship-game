@@ -112,7 +112,7 @@ public class Display {
     }
 
     public void shipSizeVisualisation() {
-        System.out.println(Colors.ANSI_BLACK + "Carrier: ◯ ◯ ◯ ◯ ◯        Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯");
+        System.out.println(Colors.ANSI_BLACK + "Carrier: ◯ ◯ ◯ ◯ ◯        Cruiser: ◯ ◯ ◯ ◯    Battleship: ◯ ◯ ◯    Submarine: ◯ ◯    Destroyer: ◯\n\n");
     }
 
     public void showShips() {
@@ -121,7 +121,7 @@ public class Display {
         System.out.println(" _|___| |___| |__o\\" + "\t\t\t__|_o_o_o\\__" + "\t\t )_))_))_)" + "\t\t\t  /_|_\\");
         System.out.println("/...\\_____|___|____\\  " + "\t\t\\          /" + "\t\t _!__!__!_" + "\t\t    ____|____\t\t\t__/\\__");
         System.out.println("\\   o * o * * o o  /" + "\t\t \\......../" + "\t\t\t \\_______/" + "\t\t    \\_______/\t\t\t\\____/");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 
     public void showBoard(Square[][] ocean, Boolean isFighting) {
@@ -145,8 +145,10 @@ public class Display {
                     if (!isFighting) {
                         System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
                     } else {
-                        if (ocean[i][j].getSquareStatus().getCharacter() == "H" || ocean[i][j].getSquareStatus().getCharacter() == "M") {
-                            System.out.format(Colors.ANSI_BLACK + " |  %2s", ocean[i][j].getSquareStatus().getCharacter());
+                        if (ocean[i][j].getSquareStatus().getCharacter() == "H") {
+                            System.out.format(Colors.ANSI_BLACK + " |  %2s", "\uD83D\uDC80");
+                        } else if (ocean[i][j].getSquareStatus().getCharacter() == "M") {
+                            System.out.format(Colors.ANSI_BLACK + " |  %2s", "◯");
                         } else {
                             System.out.format(Colors.ANSI_BLACK + " |  %2s", " ");
                         }
@@ -155,8 +157,10 @@ public class Display {
                     if (!isFighting) {
                         System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
                     } else {
-                        if (ocean[i][j].getSquareStatus().getCharacter() == "H" || ocean[i][j].getSquareStatus().getCharacter() == "M") {
-                            System.out.format(Colors.ANSI_BLACK + "| %2s  ", ocean[i][j].getSquareStatus().getCharacter());
+                        if (ocean[i][j].getSquareStatus().getCharacter() == "H" ) {
+                            System.out.format(Colors.ANSI_BLACK + "| %2s  ", "\uD83D\uDC80");
+                        } else if (ocean[i][j].getSquareStatus().getCharacter() == "M") {
+                            System.out.format(Colors.ANSI_BLACK + "| %2s  ", "◯");
                         } else {
                             System.out.format(Colors.ANSI_BLACK + "| %2s  ", " ");
                         }

@@ -4,8 +4,7 @@ public enum SquareStatus {
     EMPTY (" "),
     SHIP ("S"),
     HIT ("H"),
-    MISSED ("M"),
-    NEIGHBOUR("N");
+    MISSED ("M");
 
     private final String CHARACTER;
 
