@@ -22,8 +22,8 @@ Battleship is a strategy type guessing game for two players. It is played on rul
 
 ## USAGE 
 ### START 
-(click enter to contiune)
 ![image](https://github.com/Yummikko/Java-Battleship-Game/assets/104222374/305fc17a-87e9-4481-8d10-8959d0be8af2)
+(click enter to contiune)
 
 ### SETTINGS 
 ![image](https://github.com/Yummikko/Java-Battleship-Game/assets/104222374/c5c51d01-8d3d-4664-94dd-bff0629f4373)
